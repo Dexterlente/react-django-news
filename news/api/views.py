@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 
 from .serializers import *
 # Create your views here.
+
+
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def login(request):
@@ -58,3 +60,16 @@ def register(request):
     except ValidationError as e:
         return Response({'error': e.message}, status=status.HTTP_400_BAD_REQUEST)
     return Response({'message': 'Successfully registered', 'token': token.key})
+
+
+@api_view(['GET'])
+def article_list(request):
+    articles = Article.objects.all().order_by('-time_created')
+    serializer = ArticleSerializer(articles, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def article_detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    serializer = ArticleSerializer(article)
+    return Response(serializer.data)
