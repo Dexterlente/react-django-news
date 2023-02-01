@@ -68,9 +68,18 @@ def article_list(request):
     serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
 
+
+# def article_detail(request, pk):
+#     article = Article.objects.get(pk=pk)
+#     serializer = ArticleSerializer(article)
+#     return Response(serializer.data)
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def article_detail(request, pk):
-    article = Article.objects.get(pk=pk)
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
     serializer = ArticleSerializer(article)
     return Response(serializer.data)
 
@@ -80,8 +89,28 @@ def post_list(request):
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
+# @api_view(['GET'])
+# @permission_classes([AllowAny])
+# def post_detail(request, pk):
+#     post = Post.objects.get(pk=pk)
+#     serializer = PostSerializer(post)
+#     return Response(serializer.data)
+
 @api_view(['GET'])
-def post_detail(request, pk):
-    post = Post.objects.get(pk=pk)
-    serializer = PostSerializer(post)
+@permission_classes([AllowAny])
+def article_detail(request, pk):
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
+    serializer = ArticleSerializer(post)
     return Response(serializer.data)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def profile(request):
+    try:
+        profile = Profile.objects.get(user=request.user)
+        return Response(ProfileSerializer(profile).data)
+    except Profile.DoesNotExist:
+        return Response({'error': 'Profile does not exist'}, status=status.HTTP_404_NOT_FOUND)
