@@ -4,10 +4,11 @@ from django.utils import timezone
 # Create your models here.
 
 class User (AbstractUser):
-    pass
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile_author")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.CharField(max_length=1000)
     profile_content = models.TextField()
 
