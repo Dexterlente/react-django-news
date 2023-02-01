@@ -73,3 +73,15 @@ def article_detail(request, pk):
     article = Article.objects.get(pk=pk)
     serializer = ArticleSerializer(article)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def post_list(request):
+    posts = Post.objects.all().order_by('-time_created')
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def post_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    serializer = PostSerializer(post)
+    return Response(serializer.data)
