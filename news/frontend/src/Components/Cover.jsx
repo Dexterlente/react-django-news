@@ -16,7 +16,7 @@ const Cover = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  // params for auto change
   const autoScroll = true;
   let slideInterval;
   let intervalTime = 10000;
@@ -37,11 +37,11 @@ const Cover = () => {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
-
+//auto
   function auto() {
     slideInterval = setInterval(nextSlide, intervalTime);
   }
-
+  // fire autoscroll with interval every currentindex change
     useEffect(() => {
       if (autoScroll) {
         auto();
@@ -51,7 +51,7 @@ const Cover = () => {
 
   return (
     <div>
-      <div className='bg-[#FFFDD0] h-[625px] hidden lg:block'>
+      <div className='bg-[#FFFDD0] h-[585px] hidden lg:block'>
         <div className='max-w-[1280] w-11/12 m-auto py-6 h-screen px-4 relative group'>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
