@@ -22,12 +22,12 @@ const NavBar = () => {
 
 
   return (
-	<div>
+	<div className='bg-[#FAF9F6]'>
 	<div className='hidden sm:block'>
 			<div className='flex border-b-2 border-gray-300'>
 			<img src={ Daily } className="mx-auto h-24" alt="Daily Blockchain Ph" />
 			</div>
-		<div className='relative border-double border-b-4 border-black font-bold'>
+		<div className='relative border-double border-b-4 bg-[#F4F0DB] border-black font-bold'>
 			<div className='flex absolute right-8'>
 				<div className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
 					Articles
@@ -52,7 +52,7 @@ const NavBar = () => {
 				<img src={ Daily } className="mx-auto h-16" alt="Daily Blockchain Ph" />
 			</div>
 			<div className='relative'>
-			<div className='font-bold flex block sm:hidden mt-2 border-double border-b-4 border-black font-bold'>
+			<div className='font-bold bg-[#F4F0DB] sm:hidden pt-2 border-double border-b-4 border-black flex'>
 	
 				<div className='pl-2 mb-2'>
 					{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
