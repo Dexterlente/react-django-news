@@ -41,7 +41,7 @@ const NavBar = () => {
 					{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
 				</div>
 				<div className='pl-4'>
-                	{dayNames[now.getDay()]} {now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                	{dayNames[now.getDay()]}
 				</div>
 			</div>
 		</div>
@@ -58,7 +58,7 @@ const NavBar = () => {
 					{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
 				</div>
 				<div className='pl-2 mb-2'>
-					{dayNames[now.getDay()]} {now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+					{dayNames[now.getDay()]}
 				</div>
 						<div onClick={handleNav} className="block sm:hidden absolute right-2">
 								{nav ? "" : <AiOutlineMenu size={25} />}
