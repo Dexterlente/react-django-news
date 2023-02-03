@@ -36,12 +36,9 @@ const NavBar = () => {
 					Live Prices
 				</div>
 			</div>
-			<div className='font-bold flex p-2'>
+			<div className='font-bold p-2'>
 				<div className='pl-10'>
-					{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
-				</div>
-				<div className='pl-4'>
-                	{dayNames[now.getDay()]}
+				{dayNames[now.getDay()]},{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
 				</div>
 			</div>
 		</div>
