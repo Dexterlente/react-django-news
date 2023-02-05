@@ -27,5 +27,5 @@ const MainBody = () => {
     </div>
   )
 }
-
+//timestap feb 5 may internet na!!
 export default MainBody
