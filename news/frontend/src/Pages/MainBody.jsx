@@ -1,6 +1,7 @@
 import React from 'react'
 import car from '../Assets/car.png'
 
+
 const MainBody = () => {
   return (
     <div className='border-b-2 pb-4 border-color-white mt-10 bg-[#FAF9F6]'>
