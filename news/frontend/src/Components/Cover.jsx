@@ -108,7 +108,7 @@ const Cover = () => {
         </div>
       </div>
               {/* sm size */}
-              <div className='bg-[#FFFDD0] h-[320px] block md:hidden'>
+              <div className='h-[320px] block md:hidden'>
         <div className='w-full m-auto py-6 h-screen relative group'>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
