@@ -51,7 +51,7 @@ const Cover = () => {
 
   return (
     <div className='mb-4'>
-      <div className='bg-[#FFFDD0] h-[585px] hidden lg:block'>
+      <div className='h-[585px] hidden lg:block'>
         <div className='max-w-[1280] w-11/12 m-auto py-6 h-screen px-4 relative group'>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
