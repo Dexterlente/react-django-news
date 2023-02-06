@@ -2,7 +2,15 @@ import React from 'react'
 
 const PostPage = () => {
   return (
-    <div>PostPage</div>
+    <div>
+        <div className='text-[40px]'>
+waewaewaewa
+        </div>
+        <div className='text-[16px]'>
+waewaeqweqwcq qw elqw
+eqweqke
+        </div>
+    </div>
   )
 }
 
