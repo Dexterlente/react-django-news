@@ -70,7 +70,8 @@ const Cover = () => {
               <div
                 key={slideIndex}
                 onClick={() => goToSlide(slideIndex)}
-                className='text-2xl cursor-pointer'
+                className={`slide ${slideIndex === currentIndex ? "current" : ""} transition-opacity duration-1000 ease-in-out`}
+                style={{ opacity: slideIndex === currentIndex ? 1 : 0 }}
               >
                 <RxDotFilled />
               </div>
@@ -99,7 +100,8 @@ const Cover = () => {
               <div
                 key={slideIndex}
                 onClick={() => goToSlide(slideIndex)}
-                className='text-2xl cursor-pointer'
+                className={`slide ${slideIndex === currentIndex ? "current" : ""} transition-opacity duration-1000 ease-in-out`}
+                style={{ opacity: slideIndex === currentIndex ? 1 : 0 }}
               >
                 <RxDotFilled />
               </div>
@@ -127,7 +129,8 @@ const Cover = () => {
               <div
                 key={slideIndex}
                 onClick={() => goToSlide(slideIndex)}
-                className='text-2xl cursor-pointer'
+                className={`slide ${slideIndex === currentIndex ? "current" : ""} transition-opacity duration-1000 ease-in-out`}
+                style={{ opacity: slideIndex === currentIndex ? 1 : 0 }}
               >
                 <RxDotFilled />
               </div>
