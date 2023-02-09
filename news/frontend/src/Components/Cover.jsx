@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
+import MainBody from '../Pages/MainBody';
 
 const Cover = () => {
   const slides = [
@@ -50,6 +51,7 @@ const Cover = () => {
     },[currentIndex]);
 
   return (
+    <>
     <div className='mb-4'>
       <div className='h-[585px] hidden lg:block'>
         <div className='max-w-[1280] w-11/12 m-auto py-6 h-screen px-4 relative group'>
@@ -139,6 +141,8 @@ const Cover = () => {
         </div>
       </div>
     </div>
+    <MainBody />
+    </>
   );
 }
 
