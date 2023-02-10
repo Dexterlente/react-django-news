@@ -103,7 +103,7 @@ def post_detail(request, pk):
         post = Post.objects.get(pk=pk)
     except Post.DoesNotExist:
         return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
-    serializer = ArticleSerializer(post)
+    serializer = PostSerializer(post)
     return Response(serializer.data)
 
 @api_view(["GET"])

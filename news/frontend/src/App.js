@@ -4,9 +4,13 @@ import Cover from './Components/Cover'
 import MainBody from './Pages/MainBody'
 import Footer from './Components/Footer'
 import { Outlet, Route, Routes } from 'react-router-dom'
-import { Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import ArticlePage from './Pages/ArticlePage'
 import LivePrice from './Pages/LivePrice'
+
+
+const PostContent = lazy(() =>  import('./Pages/PostContent'));
+const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
 
 function App() {
   const NavAndFooter = () => {
@@ -27,7 +31,9 @@ function App() {
               <Route path="/" element={<Cover />} />
               <Route path="/post" element={<MainBody />} />
               <Route path="/articles" element={<ArticlePage />} />
-              <Route path="/liveprice" element={<LivePrice />} />                       
+              <Route path="/liveprice" element={<LivePrice />} />
+              <Route path="/post/:id" element={<PostContent />} />  
+              <Route path="/articles/:id" element={<ArticleContent />} />                         
               </Route>
             </Routes>
         </Suspense>

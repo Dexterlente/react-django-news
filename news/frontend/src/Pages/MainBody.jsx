@@ -1,6 +1,8 @@
 import React from 'react'
 import car from '../Assets/car.png'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 
 
 const MainBody = () => {
@@ -8,6 +10,7 @@ const MainBody = () => {
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
   const [articlesLoading, setArticlesLoading] = useState(true);
+
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/posts/")
@@ -32,7 +35,7 @@ const MainBody = () => {
     <div>
     <div className='pb-4 pt-10 mb-6 bg-[#FAF9F6]'>
       <div className='hidden lg:block'>
-        <div className='text-center font-bold text-[70px] mt-10 mb-6'>
+        <div className='text-center font-bold text-[70px] mt-10 mb-16'>
           Top Stories
         </div>
         <div className='flex justify-center ml-4'>
@@ -40,12 +43,15 @@ const MainBody = () => {
           <p>Loading...</p>
         ) : (
         <div>
+
             {posts.map((post) => (
               <div key={post.id} className='flex border-b-2 border-[#795C34] mb-4 pb-4'> 
+                        <Link to={`/post/${post.id}`}>
                 <div className='w-3/5 mr-4 content-center'>
-                  <h1 className='font-bold text-2xl mr-6'>{post.title_post}</h1>
+                  <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{post.title_post}</h1>
                   </div>
-                <img className='h-[250px] w-[380px] mr-2' src={ post.image_post } alt='Image' />
+                  </Link>
+                <img className='h-[150px] w-[300px] mr-2' src={ post.image_post } alt='Image' />
             </div>
             ))}
         </div>
@@ -57,10 +63,12 @@ const MainBody = () => {
                       <div>
                           {articles.map((article) => (
                             <div key={article.id} className='flex border-b-2 border-[#795C34] mb-4 pb-4'> 
-                              <div className='w-3/5 mr-4 content-center'>
-                                <h1 className='font-bold text-2xl mr-6'>{article.title}</h1>
+                            <Link to={`/articles/${article.id}`}>
+                                <div className='w-3/5 mr-4 content-center'>
+                                <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{article.title}</h1>
                                 </div>
-                              <img className='h-[250px] w-[380px] mr-2' src={ article.image } alt='Image' />
+                                </Link>
+                              <img className='h-[150px] w-[300px] ml-2' src={ article.image } alt='Image' />
                           </div>
                           ))}
                       </div>
