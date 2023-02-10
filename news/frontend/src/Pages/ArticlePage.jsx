@@ -1,44 +1,40 @@
 import React from 'react'
-import car from '../Assets/car.png'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 
 const ArticlePage = () => {
+  const [article, setArticle] =useState([]);
+  const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/articles/")
+      .then((res) => res.json())
+      .then((data) => {
+        setArticle(data);
+        setLoading(false);
+      });
+  }, []);
+
   return (
-    <>
-    <div className='flex justify-center mt-10 border-b-4 mb-5 border-[#9A7B4F]'>
-      <div className='w-2/5 mr-2 ml-3'>
-      <h1 className='font-bold'>
-                TIELEREQRW QEWQEQW EVQWEQWE VW@EWQRV QWERQETRQ WERQCWE QWXEQWE
-              </h1>
-              <p className='text-sm'>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-              when an unknown printer took a galley of type and scrambled it to make a type 
-              specimen book. It has survived not only five centuries, but also the leap into 
-
-              </p>
-      </div>
-      <div className='h-[300px] w-[400px] ml-3 mr-4'>
-              <img src={ car } alt='car' />
-      </div>
+    <div className='items-center justify-center'>
+            {loading ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <div>
+                          {article.map((article) => (
+                            <div key={article.id} className=' flex border-b-2 border-[#795C34]'> 
+                            <Link to={`/articles/${article.id}`}>
+                                <div>
+                                <h1 className='font-bold text-2xl hover:opacity-60'>{article.title}</h1>
+                                </div>
+                                </Link>
+                              <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
+                          </div>
+                          ))}
+                      </div>
+                    )}
     </div>
-    <div className='flex justify-center mt-10 border-b-4 mb-5 border-[#9A7B4F]'>
-      <div className='w-2/5 mr-2 ml-3'>
-      <h1 className='font-bold'>
-                TIELEREQRW QEWQEQW EVQWEQWE VW@EWQRV QWERQETRQ WERQCWE QWXEQWE
-              </h1>
-              <p className='text-sm'>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-              when an unknown printer took a galley of type and scrambled it to make a type 
-              specimen book. It has survived not only five centuries, but also the leap into 
-
-              </p>
-      </div>
-      <div className='h-[300px] w-[400px] ml-3 mr-4'>
-              <img src={ car } alt='car' />
-      </div>
-    </div>
-    </>
   )
 }
 
