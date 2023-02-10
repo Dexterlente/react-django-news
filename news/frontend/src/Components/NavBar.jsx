@@ -3,6 +3,7 @@ import Daily from '../Assets/Daily.png'
 import white from '../Assets/white.png'
 import DailyWhite from '../Assets/DailyWhite.png'
 import { AiOutlineClose, AiOutlineMenu, AiOutlineCopyrightCircle } from "react-icons/ai";
+import { Link } from 'react-router-dom'
 
 
 let now = new Date();
@@ -25,16 +26,18 @@ const NavBar = () => {
 	<div className='bg-[#FAF9F6]'>
 	<div className='hidden sm:block'>
 			<div className='flex border-b-2 border-gray-300'>
-			<img src={ Daily } className="mx-auto h-24" alt="Daily Blockchain Ph" />
+				<Link to={"/"} className="mx-auto">
+					<img src={ Daily } className="h-24" alt="Daily Blockchain Ph" />
+				</Link>
 			</div>
 		<div className='relative border-double border-b-4 bg-[#F4F0DB] border-black font-bold'>
 			<div className='flex absolute right-8'>
-				<div className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
+				<Link to={"/articles"} className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
 					Articles
-				</div>
-				<div className='mr-10 mt-2 hover:bg-gray-200 rounded-md'>
+				</Link>
+				<Link to={"/liveprice"} className='mr-10 mt-2 hover:bg-gray-200 rounded-md'>
 					Live Prices
-				</div>
+				</Link>
 			</div>
 			<div className='font-bold p-2'>
 				<div className='pl-10'>
@@ -46,7 +49,9 @@ const NavBar = () => {
 	{/* mobile device */}
 
 	<div className='border-b-2 border-gray-300 block sm:hidden'>
-				<img src={ Daily } className="mx-auto h-16" alt="Daily Blockchain Ph" />
+					<Link to={"/"}>
+						<img src={ Daily } className=" mx-auto h-16" alt="Daily Blockchain Ph" />
+					</Link>
 			</div>
 			<div className='relative'>
 			<div className='font-bold bg-[#F4F0DB] sm:hidden pt-2 border-double border-b-4 border-black flex'>

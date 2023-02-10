@@ -5,6 +5,8 @@ import MainBody from './Pages/MainBody'
 import Footer from './Components/Footer'
 import { Outlet, Route, Routes } from 'react-router-dom'
 import { Suspense } from 'react'
+import ArticlePage from './Pages/ArticlePage'
+import LivePrice from './Pages/LivePrice'
 
 function App() {
   const NavAndFooter = () => {
@@ -23,7 +25,9 @@ function App() {
             <Routes>
               <Route element={<NavAndFooter />}>
               <Route path="/" element={<Cover />} />
-              <Route path="/post" element={<MainBody />} />             
+              <Route path="/post" element={<MainBody />} />
+              <Route path="/articles" element={<ArticlePage />} />
+              <Route path="/liveprice" element={<LivePrice />} />                       
               </Route>
             </Routes>
         </Suspense>
