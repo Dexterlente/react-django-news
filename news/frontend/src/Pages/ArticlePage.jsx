@@ -4,7 +4,7 @@ import car from '../Assets/car.png'
 const ArticlePage = () => {
   return (
     <>
-    <div className='flex justify-center mt-10 border-b-4 mb-5'>
+    <div className='flex justify-center mt-10 border-b-4 mb-5 border-[#9A7B4F]'>
       <div className='w-2/5 mr-2 ml-3'>
       <h1 className='font-bold'>
                 TIELEREQRW QEWQEQW EVQWEQWE VW@EWQRV QWERQETRQ WERQCWE QWXEQWE
@@ -21,7 +21,7 @@ const ArticlePage = () => {
               <img src={ car } alt='car' />
       </div>
     </div>
-    <div className='flex justify-center mt-10 border-b-4 mb-5'>
+    <div className='flex justify-center mt-10 border-b-4 mb-5 border-[#9A7B4F]'>
       <div className='w-2/5 mr-2 ml-3'>
       <h1 className='font-bold'>
                 TIELEREQRW QEWQEQW EVQWEQWE VW@EWQRV QWERQETRQ WERQCWE QWXEQWE
