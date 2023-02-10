@@ -141,7 +141,7 @@ const Cover = () => {
         </div>
       </div>
     </div>
-    <MainBody />
+    <MainBody />  
     </>
   );
 }
