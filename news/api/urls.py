@@ -8,6 +8,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('articles/', views.article_list, name='articles'),
     path('articles/<str:pk>', views.article_detail, name='article'),
-    path('posts/', views.article_list, name='posts'),
-    path('posts/<str:pk>', views.article_detail, name='post'),
+    path('posts/', views.post_list, name='posts'),
+    path('posts/<str:pk>', views.post_detail, name='post'),
 ]

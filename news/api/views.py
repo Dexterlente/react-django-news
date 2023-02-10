@@ -85,7 +85,7 @@ def article_detail(request, pk):
 
 @api_view(['GET'])
 def post_list(request):
-    posts = Post.objects.all().order_by('-time_created')
+    posts = Post.objects.all().order_by('-time_created_post')
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
@@ -98,7 +98,7 @@ def post_list(request):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def article_detail(request, pk):
+def post_detail(request, pk):
     try:
         post = Post.objects.get(pk=pk)
     except Post.DoesNotExist:
