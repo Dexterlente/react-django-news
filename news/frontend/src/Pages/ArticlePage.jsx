@@ -17,19 +17,19 @@ const ArticlePage = () => {
   }, []);
 
   return (
-    <div className='items-center justify-center'>
+    <div>
             {loading ? (
                       <p>Loading...</p>
                     ) : (
                       <div>
                           {article.map((article) => (
-                            <div key={article.id} className=' flex border-b-2 border-[#795C34]'> 
-                            <Link to={`/articles/${article.id}`}>
-                                <div>
-                                <h1 className='font-bold text-2xl hover:opacity-60'>{article.title}</h1>
-                                </div>
-                                </Link>
-                              <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
+                          <div key={article.id} className=' flex place-content-center border-b-2 border-[#795C34] my-10'> 
+                                <Link to={`/articles/${article.id}`}>
+                                    <div>
+                                    <h1 className='w-2/5 font-bold text-2xl hover:opacity-60'>{article.title}</h1>
+                                    </div>
+                                    </Link>
+                              <img className='h-[150px] w-[300px] border-black' src={ article.image } alt='Image' />
                           </div>
                           ))}
                       </div>
