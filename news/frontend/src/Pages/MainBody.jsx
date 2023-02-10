@@ -56,24 +56,16 @@ const MainBody = () => {
           </div>
 
 {/* so hard */}
-                      <div className='w-1/5 mr-4 content-center'>
+                      <div className=' content-center'>
                           {articles.map((article) => (
-                            <div key={article.id}> 
-                              <h1 className='font-bold text-2xl'>{article.title}</h1>
-                              <p className='text-sm'> {article.content}</p>
+                            <div key={article.id} className='flex'> 
+                              <div className='w-3/5 mr-4 content-center'>
+                                <h1 className='font-bold text-2xl mr-6'>{article.title}</h1>
+                                </div>
+                              <img className='h-[250px] w-[380px] mr-2' src={ article.image } alt='car' />
                           </div>
                           ))}
                       </div>
-                      <div className='grid-cols-1'>
-                      {articles.map((article, index) => (
-                      <div key={index} className='h-[300px] w-[400px] ml-3 mb-6 mr-3'>
-                          <img src={ article.image } alt='car' />
-                      </div>
-                    ))}
-
-                    </div>
-
-                    {/* AW */}
         </div>
       </div>
               {/* md up */}
