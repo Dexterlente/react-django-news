@@ -4,9 +4,9 @@ import car from '../Assets/car.png'
 
 const MainBody = () => {
   return (
-    <div className='border-b-4 border-color-white pt-10 mb-6 bg-[#FAF9F6]'>
+    <div className='border-b-4 pb-4 border-[#795C34] pt-10 mb-6 bg-[#FAF9F6]'>
       <div className='hidden lg:block'>
-        <div className='text-center font-bold text-[70px] mb-6'>
+        <div className='text-center font-bold text-[70px] mt-10 mb-6'>
           Top Stories
         </div>
         <div className='flex justify-center ml-4'>
