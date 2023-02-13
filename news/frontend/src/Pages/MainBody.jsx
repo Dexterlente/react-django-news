@@ -62,7 +62,7 @@ const MainBody = () => {
                     ) : (
                       <div className='place-content-center'>
                           {articles.map((article) => (
-                            <div key={article.id} className='flex border-b-2 last:border-b-0 ml-2 border-[#795C34] mb-4 pb-4'> 
+                            <div key={article.id} className='flex border-b-2 last:border-b-0 ml-2 border-[#795C34] mb-4 pb-4 mr-2'> 
                             <Link to={`/articles/${article.id}`}>
                                 <div className='w-3/5 mr-4 content-center'>
                                 <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{article.title}</h1>
