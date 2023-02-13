@@ -45,7 +45,7 @@ const MainBody = () => {
         <div>
 
             {posts.map((post) => (
-              <div key={post.id} className='flex border-b-2 border-[#795C34] border-r-2 mb-4 pb-4'> 
+              <div key={post.id} className='flex border-b-2 border-[#795C34] last:border-b-0 border-r-2 mb-4 pb-4'> 
                         <Link to={`/post/${post.id}`}>
                 <div className='w-3/5 mr-4 content-center'>
                   <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{post.title_post}</h1>
@@ -62,7 +62,7 @@ const MainBody = () => {
                     ) : (
                       <div className='place-content-center'>
                           {articles.map((article) => (
-                            <div key={article.id} className='flex border-b-2 ml-2 border-[#795C34] mb-4 pb-4'> 
+                            <div key={article.id} className='flex border-b-2 last:border-b-0 ml-2 border-[#795C34] mb-4 pb-4'> 
                             <Link to={`/articles/${article.id}`}>
                                 <div className='w-3/5 mr-4 content-center'>
                                 <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{article.title}</h1>

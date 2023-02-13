@@ -23,7 +23,7 @@ const ArticlePage = () => {
                     ) : (
                       <div>
                           {article.map((article) => (
-                          <div key={article.id} className=' flex place-content-center border-b-2 border-[#795C34] my-10'> 
+                          <div key={article.id} className=' flex place-content-center border-b-2 border-[#795C34] my-10 last:border-b-0'> 
                                 <Link to={`/articles/${article.id}`}>
                                     <div>
                                     <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-12 content-center'>{article.title}
