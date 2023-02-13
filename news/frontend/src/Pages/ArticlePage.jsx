@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 
 
 const ArticlePage = () => {
-  const [article, setArticle] =useState([]);
+  const [article, setArticle] = useState([]);
   const [loading, setLoading] = useState(true);
 
     useEffect(() => {
     fetch("http://127.0.0.1:8000/api/articles/")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setArticle(data);
         setLoading(false);
       });
