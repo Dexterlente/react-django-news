@@ -9,7 +9,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const articlesPerPage = 1;
+  const articlesPerPage = 10;
   const pageCount = Math.ceil(article.length / articlesPerPage);
 
     useEffect(() => {
@@ -56,7 +56,7 @@ const ArticlePage = () => {
                           <ReactPaginate
                             pageCount={pageCount}
                             onPageChange={handlePageChange}
-                            containerClassName={'pagination'}
+                            containerClassName={'flex justify-center'}
                             activeClassName={'active'}
                           />
                       </div>
