@@ -9,7 +9,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const articlesPerPage = 10;
+  const articlesPerPage = 1;
   const pageCount = Math.ceil(article.length / articlesPerPage);
 
     useEffect(() => {
@@ -54,10 +54,14 @@ const ArticlePage = () => {
                           
                           ))}
                           <ReactPaginate
+                            breakLabel="..."
                             pageCount={pageCount}
                             onPageChange={handlePageChange}
-                            containerClassName={'flex justify-center'}
-                            activeClassName={'active'}
+                            pageRangeDisplayed={3}
+                            containerClassName={'flex items-center justify-center mt-8 mb-4'}
+                            activeClassName={'bg-gray-600 text-black'}
+                            pageClassName={"block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"}
+                            renderOnZeroPageCount={null}
                           />
                       </div>
                     )}
