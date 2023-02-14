@@ -33,7 +33,7 @@ function App() {
               <Route path="/articles" element={<ArticlePage />} />
               <Route path="/liveprice" element={<LivePrice />} />
               <Route path="/post/:id" element={<PostContent />} />  
-              <Route path="/articles/:id" element={<ArticleContent />} />                         
+              <Route path="/articles/:id" element={<ArticleContent />} />                       
               </Route>
             </Routes>
         </Suspense>
