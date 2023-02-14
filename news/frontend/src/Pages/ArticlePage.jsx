@@ -34,7 +34,9 @@ const ArticlePage = () => {
                       <p>Loading...</p>
                     ) : (
                       <div>
-                          {currentArticles.map((article) => (
+                          {currentArticles    //filter archived false
+                           .filter(article => !article.archived)
+                           .map((article) => (
                           <div key={article.id} className=' flex place-content-center border-b-2 border-[#795C34] my-10 last:border-b-0'> 
                                 <Link to={`/articles/${article.id}`}>
                                     <div>
