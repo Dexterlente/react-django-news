@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
-
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const ArticlePage = () => {
   const [article, setArticle] =useState([]);
@@ -54,15 +54,19 @@ const ArticlePage = () => {
                           
                           ))}
                           <ReactPaginate
-                            breakLabel="..."
+                            breakLabel={<span className="mr-4">...</span>}
                             pageCount={pageCount}
                             onPageChange={handlePageChange}
                             pageRangeDisplayed={3}
                             containerClassName={'flex items-center justify-center mt-8 mb-4'}
                             activeClassName={'bg-gray-600 text-black'}
-                            pageClassName={"block border- border-solid border-lightGray hover:bg-lightGray w-10 h-10 flex items-center justify-center rounded-md mr-4"}
+                            pageClassName={"border-solid border-gray-200 hover:bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full mr-4"}
                             renderOnZeroPageCount={null}
-                          />
+                            nextLabel={<span className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full">
+                            <BsChevronRight /></span>}
+                            previousLabel={<span className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full mr-4">
+                            <BsChevronLeft /></span>}
+                              />
                       </div>
                     )}
     </div>
