@@ -57,7 +57,7 @@ const Cover = () => {
         <div className='max-w-[1280] w-11/12 m-auto py-6 h-screen px-4 relative group'>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-            className='w-full h-4/6 rounded-2xl bg-center bg-cover  duration-500'
+            className='w-full h-4/6 rounded-2xl bg-center bg-contain  duration-500'
           ></div>
           {/* Left Arrow */}
           <div className='hidden group-hover:block absolute top-[33%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
@@ -87,7 +87,7 @@ const Cover = () => {
         <div className='w-11/12 m-auto py-6 h-screen px-4 relative group'>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-            className='w-full h-3/6 rounded-2xl bg-center bg-cover  duration-500'
+            className='w-full h-3/6 rounded-2xl bg-center bg-contain  duration-500'
           ></div>
           {/* Left Arrow */}
           <div className='hidden group-hover:block absolute top-[26%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
@@ -116,7 +116,7 @@ const Cover = () => {
         <div className='w-full m-auto py-6 h-screen relative group'>
           <div
             style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-            className='w-full h-2/6 rounded-2xl bg-center bg-cover  duration-500'
+            className='w-full h-2/6 rounded-2xl bg-center bg-contain  duration-500'
           ></div>
           {/* Left Arrow */}
           <div className='hidden group-hover:block absolute top-[18%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full bg-black/20 text-white cursor-pointer'>
