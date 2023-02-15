@@ -40,24 +40,31 @@ const MainBody = () => {
           Top Stories
         </div>
         <div className='flex justify-center ml-4'>
+          <div>
           {loading ? (
           <p>Loading...</p>
-        ) : (
-        <div>
+              ) : (
+                    <div>
 
-            {posts.map((post) => (
-              <div key={post.id} className='flex border-b-2 border-[#795C34] last:border-b-0 border-r-2 mb-4 pb-4'> 
-                        <Link to={`/post/${post.id}`}>
-                <div className='w-3/5 mr-4 content-center'>
-                  <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{post.title_post}</h1>
-                  </div>
-                  </Link>
-                <img className='h-[150px] w-[300px] mr-2' src={ post.image_post } alt='Image' />
-            </div>
-            ))}
-
-        </div>
+                        {posts.map((post) => (
+                          <div key={post.id} className='flex border-b-2 border-[#795C34] last:border-b-0 border-r-2 mb-4 pb-4'> 
+                                    <Link to={`/post/${post.id}`}>
+                            <div className='w-3/5 mr-4 content-center'>
+                              <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{post.title_post}</h1>
+                              </div>
+                              </Link>
+                            <img className='h-[150px] w-[300px] mr-2' src={ post.image_post } alt='Image' />
+                        </div>
+                        ))}
+                    </div>
                           )}
+                          <div className='flex flex-col justify-center items-center'>
+                            <Link to={`/postpage`}>
+                          <button type="button" class="inline-block px-6 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                            Read More</button>
+                            </Link>
+                          </div>
+          </div>
 {/* so hard */}
             <div className='relative'>
                         {articlesLoading ? (
