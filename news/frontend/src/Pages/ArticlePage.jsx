@@ -62,7 +62,7 @@ const ArticlePage = () => {
                             pageRangeDisplayed={3}
                             containerClassName={'flex items-center justify-center mt-8 mb-4'}
                             activeClassName={'bg-[#F4F0DB] text-black'}
-                            pageClassName={"border-solid border-2 border-[#F4F0DB] rounded-full hover:bg-[#F4F0DB] w-10 h-10 flex items-center justify-center rounded-full mr-4"}
+                            pageClassName={"border-dotted border-2 border-[#F4F0DB] rounded-full hover:bg-[#F4F0DB] w-10 h-10 flex items-center justify-center rounded-full mr-4"}
                             renderOnZeroPageCount={null}
                             nextLabel={<span className="w-10 h-10 flex items-center justify-center bg-[#F4F0DB] rounded-full">
                             <BsChevronRight /></span>}
