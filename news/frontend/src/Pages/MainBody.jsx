@@ -60,7 +60,7 @@ const MainBody = () => {
                           )}
                           <div className='flex flex-col justify-center items-center'>
                             <Link to={`/postpage`}>
-                          <button type="button" class="inline-block px-6 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                          <button type="button" class="inline-block px-6 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-yellow-500 hover:text-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
                             Read More</button>
                             </Link>
                           </div>
