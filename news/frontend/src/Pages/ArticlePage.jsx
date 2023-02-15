@@ -9,7 +9,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const articlesPerPage = 1;
+  const articlesPerPage = 2;
   const pageCount = Math.ceil(article.length / articlesPerPage);
 
     useEffect(() => {
@@ -61,8 +61,8 @@ const ArticlePage = () => {
                             onPageChange={handlePageChange}
                             pageRangeDisplayed={3}
                             containerClassName={'flex items-center justify-center mt-8 mb-4'}
-                            activeClassName={'bg-[#795C34] text-black'}
-                            pageClassName={"border-solid border-black rounded-full hover:bg-[#F4F0DB] w-10 h-10 flex items-center justify-center rounded-full mr-4"}
+                            activeClassName={'bg-[#F4F0DB] text-black'}
+                            pageClassName={"border-solid border-2 border-[#F4F0DB] rounded-full hover:bg-[#F4F0DB] w-10 h-10 flex items-center justify-center rounded-full mr-4"}
                             renderOnZeroPageCount={null}
                             nextLabel={<span className="w-10 h-10 flex items-center justify-center bg-[#F4F0DB] rounded-full">
                             <BsChevronRight /></span>}
