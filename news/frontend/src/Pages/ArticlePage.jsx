@@ -36,8 +36,10 @@ const ArticlePage = () => {
                       <div>
                           {currentArticles    //filter archived false
                            .filter(article => !article.archived)
-                           .map((article) => (
-                          <div key={article.id} className=' flex place-content-center border-b-2 border-[#795C34] my-10 last:border-b-0'> 
+                           .map((article, index) => (
+                          <div key={article.id} className={`flex place-content-center border-b-2 border-[#795C34] my-10 ${
+                            index === currentArticles.length - 1 ? 'border-b-0' : ''
+                          }`}> 
                                 <Link to={`/articles/${article.id}`}>
                                     <div>
                                       <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-12 content-center'>{article.title}
@@ -59,12 +61,12 @@ const ArticlePage = () => {
                             onPageChange={handlePageChange}
                             pageRangeDisplayed={3}
                             containerClassName={'flex items-center justify-center mt-8 mb-4'}
-                            activeClassName={'bg-gray-600 text-black'}
-                            pageClassName={"border-solid border-gray-200 hover:bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full mr-4"}
+                            activeClassName={'bg-[#795C34] text-black'}
+                            pageClassName={"border-solid border-black rounded-full hover:bg-[#F4F0DB] w-10 h-10 flex items-center justify-center rounded-full mr-4"}
                             renderOnZeroPageCount={null}
-                            nextLabel={<span className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full">
+                            nextLabel={<span className="w-10 h-10 flex items-center justify-center bg-[#F4F0DB] rounded-full">
                             <BsChevronRight /></span>}
-                            previousLabel={<span className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full mr-4">
+                            previousLabel={<span className="w-10 h-10 flex items-center justify-center bg-[#F4F0DB] rounded-full mr-4">
                             <BsChevronLeft /></span>}
                               />
                       </div>
