@@ -2,6 +2,7 @@ import React from 'react'
 import car from '../Assets/car.png'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ScrollToTopButton from '../Components/ScrollToTopButton'
 
 
 
@@ -54,29 +55,36 @@ const MainBody = () => {
                 <img className='h-[150px] w-[300px] mr-2' src={ post.image_post } alt='Image' />
             </div>
             ))}
+
         </div>
                           )}
 {/* so hard */}
-            {articlesLoading ? (
-                      <p>Loading...</p>
-                    ) : (
-                      <div className='place-content-center'>
-                          {articles.map((article) => (
-                            <div key={article.id} className='flex border-b-2 last:border-b-0 ml-2 border-[#795C34] mb-4 pb-4 mr-2'> 
-                            <Link to={`/articles/${article.id}`}>
-                                <div className='w-3/5 mr-4 content-center'>
-                                <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{article.title}</h1>
-                                <p className='mt-4 text-sm'>
-                                   By: {article.author.first_name} {article.author.last_name}
-                                    </p>
+            <div className='relative'>
+                        {articlesLoading ? (
+                                  <p>Loading...</p>
+                                ) : (
+                                  <div className='place-content-center'>
+                                      {articles.map((article) => (
+                                        <div key={article.id} className='flex border-b-2 last:border-b-0 ml-2 border-[#795C34] mb-4 pb-4 mr-2'> 
+                                        <Link to={`/articles/${article.id}`}>
+                                            <div className='w-3/5 mr-4 content-center'>
+                                            <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{article.title}</h1>
+                                            <p className='mt-4 text-sm'>
+                                              By: {article.author.first_name} {article.author.last_name}
+                                                </p>
+                                            </div>
+                                            </Link>
+                                          <img className='h-[150px] w-[300px] ml-2' src={ article.image } alt='Image' />
+                                      </div>
+                                      ))}
+                                  </div>
+                                )} 
+                                <div className='absolute right-3 -bottom-9  '>
+                                <ScrollToTopButton />
                                 </div>
-                                </Link>
-                              <img className='h-[150px] w-[300px] ml-2' src={ article.image } alt='Image' />
-                          </div>
-                          ))}
-                      </div>
-                    )}
+            </div>
         </div>
+        
       </div>
               {/* md up */}
       <div className='hidden md:block lg:hidden'>
