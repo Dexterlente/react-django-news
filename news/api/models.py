@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+import uuid
 # Create your models here.
 
 class User (AbstractUser):
@@ -28,6 +29,7 @@ class Profile(models.Model):
 
 
 class Article(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=20)
     content = models.TextField()
     image = models.CharField(max_length=1000)
@@ -55,6 +57,7 @@ class Article(models.Model):
 
 
 class Post(models.Model):
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     title_post = models.CharField(max_length=20)
     content_post = models.TextField()
     image_post = models.CharField(max_length=1000)

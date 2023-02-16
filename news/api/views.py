@@ -9,6 +9,7 @@ from rest_framework import status
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from rest_framework import generics
 
 from .serializers import *
 # Create your views here.
@@ -62,18 +63,28 @@ def register(request):
     return Response({'message': 'Successfully registered', 'token': token.key})
 
 
-@api_view(['GET'])
-def article_list(request):
-    articles = Article.objects.all().order_by('-time_created')
-    serializer = ArticleSerializer(articles, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def article_list(request):
+#     articles = Article.objects.all().order_by('-time_created')
+#     serializer = ArticleSerializer(articles, many=True)
+#     return Response(serializer.data)
 
+class article_list(generics.ListCreateAPIView):
+    queryset = Article.objects.all().order_by('-time_created')
+    serializer_class = ArticleSerializer
+
+
+class article_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = 'id'
+    permission_classes = [AllowAny]
 
 # def article_detail(request, pk):
 #     article = Article.objects.get(pk=pk)
 #     serializer = ArticleSerializer(article)
 #     return Response(serializer.data)
-@api_view(['GET'])
+"""@api_view(['GET'])
 @permission_classes([AllowAny])
 def article_detail(request, pk):
     try:
@@ -81,13 +92,13 @@ def article_detail(request, pk):
     except Article.DoesNotExist:
         return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
     serializer = ArticleSerializer(article)
-    return Response(serializer.data)
+    return Response(serializer.data)"""
 
-@api_view(['GET'])
+"""@api_view(['GET'])
 def post_list(request):
     posts = Post.objects.all().order_by('-time_created_post')
     serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data)"""
 
 # @api_view(['GET'])
 # @permission_classes([AllowAny])
@@ -95,8 +106,19 @@ def post_list(request):
 #     post = Post.objects.get(pk=pk)
 #     serializer = PostSerializer(post)
 #     return Response(serializer.data)
+class post_list(generics.ListCreateAPIView):
+    queryset = Post.objects.all().order_by('-time_created_post')
+    serializer_class = PostSerializer
 
-@api_view(['GET'])
+
+class post_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'id'
+    permission_classes = [AllowAny]
+
+
+"""@api_view(['GET'])
 @permission_classes([AllowAny])
 def post_detail(request, pk):
     try:
@@ -104,7 +126,7 @@ def post_detail(request, pk):
     except Post.DoesNotExist:
         return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
     serializer = PostSerializer(post)
-    return Response(serializer.data)
+    return Response(serializer.data)"""
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])

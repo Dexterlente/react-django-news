@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import User, Profile, Article, Post
+from rest_framework import serializers
 
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -13,6 +14,7 @@ class ProfileSerializer(ModelSerializer):
 
 class ArticleSerializer(ModelSerializer):
     author = UserSerializer(read_only=True)
+    id = serializers.UUIDField(format='hex', read_only=True)
 
     class Meta:
         model = Article
