@@ -69,7 +69,7 @@ def register(request):
 #     serializer = ArticleSerializer(articles, many=True)
 #     return Response(serializer.data)
 
-class article_list(generics.ListCreateAPIView):
+class article_list(generics.ListAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
 
