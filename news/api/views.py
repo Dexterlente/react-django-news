@@ -80,6 +80,17 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     permission_classes = [AllowAny]
 
+class post_list(generics.ListCreateAPIView):
+    queryset = Post.objects.all().order_by('-time_created_post')
+    serializer_class = PostSerializer
+
+
+class post_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'id'
+    permission_classes = [AllowAny]
+    
 # def article_detail(request, pk):
 #     article = Article.objects.get(pk=pk)
 #     serializer = ArticleSerializer(article)
@@ -106,16 +117,7 @@ def post_list(request):
 #     post = Post.objects.get(pk=pk)
 #     serializer = PostSerializer(post)
 #     return Response(serializer.data)
-class post_list(generics.ListCreateAPIView):
-    queryset = Post.objects.all().order_by('-time_created_post')
-    serializer_class = PostSerializer
 
-
-class post_detail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    lookup_field = 'id'
-    permission_classes = [AllowAny]
 
 
 """@api_view(['GET'])
