@@ -56,7 +56,7 @@ const MainBody = () => {
                                   </p>
                               </div>
                               </Link>
-                            <img className='h-[150px] w-[300px] mr-2' src={ post.image_post } alt='Image' />
+                            <img className='h-[150px] w-[300px] pr-2' src={ post.image_post } alt='Image' />
                         </div>
                         ))}
                     </div>
