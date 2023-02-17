@@ -39,8 +39,8 @@ const MainBody = () => {
         <div className='text-center font-bold text-[70px] mt-10 mb-16'>
           Top Stories
         </div>
-        <div className='flex justify-center ml-4'>
-          <div>
+        <div className='relative flex justify-center ml-4'>
+          <div className='absolute left-2' >
           {loading ? (
           <p>Loading...</p>
               ) : (
@@ -51,6 +51,9 @@ const MainBody = () => {
                                     <Link to={`/post/${post.id}`}>
                             <div className='w-2/5 mr-4 content-center'>
                               <h1 className='font-bold text-2xl mr-6 hover:opacity-60'>{post.title_post}</h1>
+                              <p className='mt-4 text-sm'>
+                                By: {post.author_post.first_name} {post.author_post.last_name}
+                                  </p>
                               </div>
                               </Link>
                             <img className='h-[150px] w-[300px] mr-2' src={ post.image_post } alt='Image' />
