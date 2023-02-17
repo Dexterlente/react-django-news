@@ -42,7 +42,7 @@ const ArticlePage = () => {
                           }`}> 
                                 <Link to={`/articles/${article.id}`}>
                                     <div className='ml-28'>
-                                      <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-12 content-center'>{article.title}
+                                      <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-10 content-center'>{article.title}
                                       <br/>
                                         <p className='mt-4 text-sm'>
                                             By: {article.author.first_name} {article.author.last_name}
@@ -74,8 +74,5 @@ const ArticlePage = () => {
     </div>
   )
 }
-
-
-// pagination needed
 
 export default ArticlePage
