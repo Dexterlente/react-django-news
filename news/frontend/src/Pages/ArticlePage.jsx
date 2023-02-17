@@ -34,7 +34,10 @@ const ArticlePage = () => {
                       <p>Loading...</p>
                     ) : (
                       <div>
-                        <div className='hidden sm:block mt-28'>
+                        <div className='text-center text-[48px] md:text-[68px] font-bold mt-4'> 
+                          Crypto101
+                        </div>
+                        <div className='hidden sm:block mt-8'>
                           {currentArticles    //filter archived false
                            .filter(article => !article.archived)
                            .map((article, index) => (
@@ -64,7 +67,7 @@ const ArticlePage = () => {
                           ))}
 
                           </div>
-                          <div className='block sm:hidden mt-28'>
+                          <div className='block sm:hidden mt-8'>
                           {currentArticles    //filter archived false
                            .filter(article => !article.archived)
                            .map((article, index) => (

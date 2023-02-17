@@ -30,19 +30,19 @@ const NavBar = () => {
 					<img src={ Daily } className="h-24" alt="Daily Blockchain Ph" />
 				</Link>
 			</div>
-		<div className='relative border-double border-b-4 bg-[#F4F0DB] border-black font-bold'>
+		<div className='relative border-double border-b-4 bg-[#F4F0DB] border-black'>
 			<div className='flex absolute right-8'>
-				<Link to='/about' className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
+				<Link to='/about' className='mr-4 mt-2  hover:bg-gray-200 rounded-md'>
 					About
 				</Link>
 				<Link to={"/articles"} className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
-					Articles
+					Crypto101
 				</Link>
 				<Link to={"/liveprice"} className='mr-10 mt-2 hover:bg-gray-200 rounded-md'>
 					Live Prices
 				</Link>
 			</div>
-			<div className='font-bold p-2'>
+			<div className='p-2'>
 				<div className='pl-10'>
 				{dayNames[now.getDay()]},{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
 				</div>
@@ -81,12 +81,16 @@ const NavBar = () => {
 
 					{/* {Mobile} */}
 			<div className='flex flex-col'>
-				<Link to={"/articles"} onClick={handleNav} className='hover:bg-gray-200 mt-14 ml-8 font-bold rounded-md'>
+				<Link to={"/about"} onClick={handleNav} className='hover:bg-gray-200 mt-14 ml-8 font-bold rounded-md'>
+					ABOUT
+				</Link>
+				<Link to={"/articles"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
 					ARTICLES
 				</Link>
 				<Link to={"/liveprice"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
 					LIVE PRICES
 				</Link>
+				
 				<div className='mt-20'>
 					<img src={ white } alt="Daily Blockchain" />
 				<	img src={ DailyWhite } className="pr-2" alt="Daily Blockchain" />
