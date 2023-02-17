@@ -39,7 +39,7 @@ const MainBody = () => {
         <div className='text-center font-bold text-[70px] mt-10 mb-32'>
           Top Stories
         </div>
-        <div className='grid grid-cols-2 w-screen h-screen justify-center ml-4'>
+        <div className='grid grid-cols-2 w-screen justify-center ml-4 relative'>
           <div>
           {loading ? (
           <p>Loading...</p>
@@ -49,7 +49,7 @@ const MainBody = () => {
                         {posts.map((post) => (
                           <div key={post.id} className='border-b-2 border-[#795C34] last:border-b-0 border-r-2 mb-4 pb-4 grid grid-cols-2'> 
                                     <Link to={`/post/${post.id}`}>
-                            <div className='mr-6'>
+                            <div className='ml-8'>
                               <h1 className='font-bold text-xl hover:opacity-60'>{post.title_post}</h1>
                               <p className='mt-4 text-sm'>
                                 By: {post.author_post.first_name} {post.author_post.last_name}
@@ -75,21 +75,21 @@ const MainBody = () => {
                                 ) : (
                                   <div>
                                       {articles.map((article) => (
-                                        <div key={article.id} className='grid grid-cols-2 border-b-2 last:border-b-0 ml-10 border-[#795C34] mb-4 pb-4 mr-2'> 
+                                        <div key={article.id} className='grid grid-cols-2 border-b-2 last:border-b-0 ml-10 border-[#795C34] mb-4 pb-4'> 
                                         <Link to={`/articles/${article.id}`}>
-                                            <div className='mr-5'>
+                                            <div>
                                             <h1 className='font-bold text-xl mr-6 hover:opacity-60'>{article.title}</h1>
                                             <p className='mt-4 text-sm'>
                                               By: {article.author.first_name} {article.author.last_name}
                                                 </p>
                                             </div>
                                             </Link>
-                                          <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
+                                          <img className='h-[150px] w-[300px] mr-4' src={ article.image } alt='Image' />
                                       </div>
                                       ))}
                                   </div>
                                 )} 
-                                <div className='flex flex-col justify-end items-end mr-32'>
+                                <div className='absolute bottom-0 right-12'>
                                 <ScrollToTopButton />
                                 </div>
             </div>

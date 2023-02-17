@@ -37,11 +37,11 @@ const ArticlePage = () => {
                           {currentArticles    //filter archived false
                            .filter(article => !article.archived)
                            .map((article, index) => (
-                          <div key={article.id} className={`flex place-content-center border-b-2 border-[#795C34] my-10 ${
+                          <div key={article.id} className={`grid grid-cols-2 border-b-2 content-center border-[#795C34] my-10 ${
                             index === currentArticles.length - 1 ? 'border-b-0' : ''
                           }`}> 
                                 <Link to={`/articles/${article.id}`}>
-                                    <div>
+                                    <div className='ml-28'>
                                       <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-12 content-center'>{article.title}
                                       <br/>
                                         <p className='mt-4 text-sm'>
@@ -50,7 +50,7 @@ const ArticlePage = () => {
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px] border-black mb-4' src={ article.image } alt='Image' />
+                              <img className='h-[150px] w-[300px] border-black mb-4 ml-12' src={ article.image } alt='Image' />
                           
                           </div>
                           
