@@ -32,6 +32,9 @@ const NavBar = () => {
 			</div>
 		<div className='relative border-double border-b-4 bg-[#F4F0DB] border-black font-bold'>
 			<div className='flex absolute right-8'>
+				<Link to='/about' className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
+					About
+				</Link>
 				<Link to={"/articles"} className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
 					Articles
 				</Link>
@@ -77,13 +80,13 @@ const NavBar = () => {
 					</div>
 
 					{/* {Mobile} */}
-			<div>
-				<div onClick={handleNav} className='hover:bg-gray-200 mt-14 ml-8 font-bold rounded-md'>
+			<div className='flex flex-col'>
+				<Link to={"/articles"} onClick={handleNav} className='hover:bg-gray-200 mt-14 ml-8 font-bold rounded-md'>
 					ARTICLES
-				</div>
-				<div onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
+				</Link>
+				<Link to={"/liveprice"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
 					LIVE PRICES
-				</div>
+				</Link>
 				<div className='mt-20'>
 					<img src={ white } alt="Daily Blockchain" />
 				<	img src={ DailyWhite } className="pr-2" alt="Daily Blockchain" />

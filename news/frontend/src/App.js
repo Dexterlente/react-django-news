@@ -8,6 +8,7 @@ import { lazy, Suspense } from 'react'
 import ArticlePage from './Pages/ArticlePage'
 import LivePrice from './Pages/LivePrice'
 import PostPage from './Pages/PostPage'
+import About from './Pages/About'
 
 
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
@@ -35,7 +36,8 @@ function App() {
               <Route path="/liveprice" element={<LivePrice />} />
               <Route path="/post/:id" element={<PostContent />} />  
               <Route path="/articles/:id" element={<ArticleContent />} /> 
-              <Route path="/postpage" element={<PostPage />} />                     
+              <Route path="/postpage" element={<PostPage />} />     
+              <Route path="/about" element={<About />} />                
               </Route>
             </Routes>
         </Suspense>
