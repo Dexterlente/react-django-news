@@ -9,7 +9,7 @@ from rest_framework import status
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from rest_framework import generics
+from rest_framework import generics, status
 
 from .serializers import *
 # Create your views here.
@@ -39,29 +39,13 @@ def logout(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def register(request):
-    username = request.data.get("username")
-    password = request.data.get("password")
-    password_confirm = request.data.get("password_confirm")
-    email = request.data.get("email")
-    first_name = request.data.get("first_name")
-    last_name = request.data.get("last_name")
-    if username is None or password is None or email is None:
-        return Response({'error': 'Please provide username, email, and password'},
-                        status=status.HTTP_400_BAD_REQUEST)
-    if password != password_confirm:
-        return Response({'error': 'Passwords do not match'},
-                        status=status.HTTP_400_BAD_REQUEST)
-    if User.objects.filter(username=username).exists():
-        return Response({'error': 'Username already exists'},
-                        status=status.HTTP_400_BAD_REQUEST)
-    try:
-        user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
-        user.save()
+    serializer = UserSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
         token = Token.objects.create(user=user)
-    except ValidationError as e:
-        return Response({'error': e.message}, status=status.HTTP_400_BAD_REQUEST)
-    return Response({'message': 'Successfully registered', 'token': token.key})
-
+        return Response({'message': 'Successfully registered', 'token': token.key})
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # @api_view(['GET'])
 # def article_list(request):

@@ -13,6 +13,7 @@ import About from './Pages/About'
 
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
 const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
+const RegisterForm = lazy(() =>  import('./Pages/RegisterForm'));
 
 function App() {
   const NavAndFooter = () => {
@@ -37,7 +38,8 @@ function App() {
               <Route path="/post/:id" element={<PostContent />} />  
               <Route path="/articles/:id" element={<ArticleContent />} /> 
               <Route path="/postpage" element={<PostPage />} />     
-              <Route path="/about" element={<About />} />                
+              <Route path="/about" element={<About />} />       
+              <Route path="/registration" element={<RegisterForm />} />        
               </Route>
             </Routes>
         </Suspense>
