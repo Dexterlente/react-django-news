@@ -40,7 +40,7 @@ const PostPage = () => {
                           <div key={post.id} className={`flex place-content-center border-b-2 border-[#795C34] my-10 ${
                             index === currentPost.length - 1 ? 'border-b-0' : ''
                           }`}> 
-                                <Link to={`/articles/${post.id}`}>
+                                <Link to={`/post/${post.id}`}>
                                     <div>
                                       <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-12 content-center'>{post.title_post}
                                       <br/>
