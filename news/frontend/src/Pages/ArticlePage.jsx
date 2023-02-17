@@ -34,27 +34,66 @@ const ArticlePage = () => {
                       <p>Loading...</p>
                     ) : (
                       <div>
+                        <div className='hidden sm:block mt-28'>
                           {currentArticles    //filter archived false
                            .filter(article => !article.archived)
                            .map((article, index) => (
-                          <div key={article.id} className={`grid grid-cols-2 border-b-2 content-center border-[#795C34] my-10 ${
+                          <div key={article.id} className={`grid grid-cols-2 border-b-2 pb-4 content-center border-[#795C34] my-10 ${
                             index === currentArticles.length - 1 ? 'border-b-0' : ''
                           }`}> 
                                 <Link to={`/articles/${article.id}`}>
                                     <div className='ml-28'>
-                                      <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-10 content-center'>{article.title}
+                                      <h1 className='font-bold text-2xl hover:opacity-60 mr-10 content-center'>{article.title}
                                       <br/>
                                         <p className='mt-4 text-sm'>
                                             By: {article.author.first_name} {article.author.last_name}
                                         </p>
+                                        <p className='mt-4 text-sm'>
+                                        {new Date(article.time_created).toLocaleDateString("en-US", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                              })}
+                                        </p>
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px] border-black mb-4 ml-12' src={ article.image } alt='Image' />
-                          
+                              <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
                           </div>
                           
                           ))}
+
+                          </div>
+                          <div className='block sm:hidden mt-28'>
+                          {currentArticles    //filter archived false
+                           .filter(article => !article.archived)
+                           .map((article, index) => (
+                          <div key={article.id} className={`flex-row border-b-2 pb-4 ml-6 content-center border-[#795C34] my-10 ${
+                            index === currentArticles.length - 1 ? 'border-b-0' : ''
+                          }`}> 
+                                <Link to={`/articles/${article.id}`}>
+                                    <div>
+                                      <h1 className='font-bold text-2xl hover:opacity-60 mr-10 content-center'>{article.title}
+                                      <br/>
+                                        <p className='mt-4 text-sm'>
+                                            By: {article.author.first_name} {article.author.last_name}
+                                        </p>
+                                        <p className='mt-4 text-sm'>
+                                        {new Date(article.time_created).toLocaleDateString("en-US", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                              })}
+                                        </p>
+                                      </h1>
+                                    </div>
+                                    </Link>
+                              <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
+                          </div>
+                          
+                          ))}
+
+                          </div>
                           <ReactPaginate
                             breakLabel={<span className="mr-4">...</span>}
                             pageCount={pageCount}
