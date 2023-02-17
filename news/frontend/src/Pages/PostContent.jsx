@@ -25,8 +25,18 @@ const PostContent = () => {
           <p>Loading...................</p>
         ) : (
           <div className='text-center'>
-            <h1 className='font-bold text-[40px] mt-8'>{PostContent.title_post}</h1>
-            <p className='text-[16px] mb-6'>{PostContent.content_post}</p>
+            <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{PostContent.title_post}</h1>
+            <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
+              By: {PostContent.author_post.first_name} {PostContent.author_post.last_name}
+          </p>
+          <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
+          {new Date(PostContent.time_created_post).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+          </p>
+            <p className='text-[16px] md:m-24 m-8'>{PostContent.content_post}</p>
           </div>
         )}
       </div>

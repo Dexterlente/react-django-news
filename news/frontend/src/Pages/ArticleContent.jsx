@@ -25,8 +25,18 @@ const ArticleContent = () => {
           <p>Loading...................</p>
         ) : (
           <div className='text-center'>
-            <h1 className='font-bold text-[40px] mt-8'>{ArticleContent.title}</h1>
-            <p className='text-[16px] mb-6'>{ArticleContent.content}</p>
+            <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{ArticleContent.title}</h1>
+            <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
+              By: {ArticleContent.author.first_name} {ArticleContent.author.last_name}
+          </p>
+          <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
+          {new Date(ArticleContent.time_created).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+          </p>
+            <p className='text-[16px] md:m-24 m-8'>{ArticleContent.content}</p>
           </div>
         )}
       </div>
