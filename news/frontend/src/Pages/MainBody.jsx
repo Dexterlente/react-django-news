@@ -1,5 +1,4 @@
 import React from 'react'
-import car from '../Assets/car.png'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ScrollToTopButton from '../Components/ScrollToTopButton'
@@ -34,7 +33,7 @@ const MainBody = () => {
 
   return (
     <div>
-    <div className='pb-4 pt-10 mb-6 bg-[#FAF9F6]'>
+    <div className='pb-4 pt-10 mb-6'>
       <div className='hidden lg:block'>
         <div className='text-center font-bold text-[70px] mt-10 mb-32'>
           Top Stories
@@ -98,26 +97,42 @@ const MainBody = () => {
       </div>
               {/* md up */}
       <div className='hidden md:block lg:hidden'>
-        <div className='text-center font-bold text-[70px] mb-6'>
+            <div className='text-center font-bold text-[70px] mb-6'>
             Top Stories
             </div>
-            <div className='flex justify-center ml-4'>
-              <div className='w-2/5 mr-6'>
-                  <h1 className='font-bold'>
-                    TIELEREQRW QEWQEQW EVQWEQWE VW@EWQRV QWERQETRQ WERQCWE QWXEQWE
-                  </h1>
-                  <p className='text-sm'>
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                  when an unknown printer took a galley of type and scrambled it to make a type 
-                  specimen book. It has survived not only five centuries, but also the leap into 
-
-                  </p>
-              </div>
-              <div className='h-[300px] w-[400px] ml-3 mr-4'>
-                  <img src={ car } className='align-middle' alt='car' />
-              </div>
+                {loading ? (
+              <p>Loading...</p>
+                  ) : (
+            <div>
+                  {posts.map((post) => (
+                    <div key={post.id} className='grid grid-cols-2 justify-center pl-2 ml-12 border-b-2 last:border-b-0 border-[#795C34] mb-4 pb-4 align-middle'> 
+                              <Link to={`/post/${post.id}`}>
+                    <div className='mr-6'>
+                        <h1 className='font-bold text-xl mt-8'>
+                        {post.title_post}
+                        </h1>
+                        <p className='text-sm'>
+                        By: {post.author_post.first_name} {post.author_post.last_name}
+                        </p>
+                    </div>
+              </Link>
+                <div className='h-[300px] w-[400px] mr-24'>
+                    <img src={ post.image_post } className='align-middle' alt='image' />
+                </div>
           </div>
+          ))}
+        </div>
+                  )}
+                          <div className='flex justify-center items-center'>
+                            <Link to={`/postpage`}>
+                            <button type="button" class="inline-block px-6 mr-18 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-yellow-500 hover:text-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                              Read More
+                              </button>
+                            </Link>
+                          </div>
+                          <div className='flex justify-end mr-10'>
+                                <ScrollToTopButton />
+                                </div>
         </div>
         {/* smallest */}
 
@@ -125,27 +140,42 @@ const MainBody = () => {
         <div className='text-center font-bold text-[30px] mb-6'>
             Top Stories
             </div>
-            <div className='justify-center p-3'>
-              <div className='mr-6'>
-                  <h1 className='font-bold text-[18px]'>
-                    TIELEREQRW QEWQEQW EVQWEQWE VW@EWQRV QWERQETRQ WERQCWE QWXEQWE
-                  </h1>
-                  <p className='text-[14px]'>
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                  when an unknown printer took a galley of type and scrambled it to make a type 
-                  specimen book. It has survived not only five centuries, but also the leap into 
 
-                  </p>
-              </div>
-              <div className='h-[300px] w-[400px]'>
-                  <img src={ car } className='align-middle' alt='car' />
+                {loading ? (
+              <p>Loading...</p>
+                  ) : (
+            <div>
+                  {posts.map((post) => (
+                    <div key={post.id} className='flex-row justify-center ml-5 border-b-4 last:border-b-0 border-[#795C34] mb-4 pb-4 align-middle'> 
+                              <Link to={`/post/${post.id}`}>
+                      <div className='mr-6'>
+                          <h1 className='font-bold text-[18px] mb-3'>
+                          {post.title_post}
+                          </h1>
+                          <p className='text-[14px] mb-3'>
+                          By: {post.author_post.first_name} {post.author_post.last_name}
+                          </p>
+                      </div>
+              </Link>
+              <div className='h-[280px] w-[380px]'>
+              <img src={ post.image_post } className='align-middle' alt='image' />
               </div>
           </div>
+            ))}
         </div>
- 
+    )}
+                          <div className='flex justify-center items-center'>
+                            <Link to={`/postpage`}>
+                            <button type="button" class="inline-block px-6 mr-18 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-yellow-500 hover:text-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                              Read More
+                              </button>
+                            </Link>
+                          </div>
+                          <div className='flex justify-end mr-10'>
+                                <ScrollToTopButton />
+                                </div>
       </div>
-
+      </div>        
     </div>
   );
 }

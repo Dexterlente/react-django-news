@@ -37,12 +37,12 @@ const PostPage = () => {
                           {currentPost    //filter archived false
                            .filter(post => !post.archived)
                            .map((post, index) => (
-                          <div key={post.id} className={`flex place-content-center border-b-2 border-[#795C34] my-10 ${
+                          <div key={post.id} className={`grid grid-cols-2 content-center border-b-2 border-[#795C34] my-10 ${
                             index === currentPost.length - 1 ? 'border-b-0' : ''
                           }`}> 
                                 <Link to={`/post/${post.id}`}>
-                                    <div>
-                                      <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-12 content-center'>{post.title_post}
+                                    <div className='ml-28'>
+                                      <h1 className='w-3/5 font-bold text-2xl hover:opacity-60 mr-10 content-center'>{post.title_post}
                                       <br/>
                                         <p className='mt-4 text-sm'>
                                             By: {post.author_post.first_name} {post.author_post.last_name}
@@ -50,7 +50,7 @@ const PostPage = () => {
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px] border-black mb-4' src={ post.image_post } alt='Image' />
+                              <img className='h-[150px] w-[300px] border-black ml-12 mb-4' src={ post.image_post } alt='Image' />
                           
                           </div>
                           
