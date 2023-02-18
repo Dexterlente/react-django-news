@@ -14,7 +14,7 @@ const RegisterForm = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
   
-    fetch('/api/register/', {
+    fetch('http://127.0.0.1:8000/api/register/', {
       method: 'POST',
       body: formData
     })

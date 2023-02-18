@@ -3,9 +3,21 @@ from .models import User, Profile, Article, Post
 from rest_framework import serializers
 
 class UserSerializer(ModelSerializer):
+    password_confirm = serializers.CharField(write_only=True)
+
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name')
+        fields = ['username', 'email', 'password', 'password_confirm', 'first_name', 'last_name']
+
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        password_confirm = validated_data.pop('password_confirm')
+        if password != password_confirm:
+            raise serializers.ValidationError({'password': 'Passwords do not match'})
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
 
 class ProfileSerializer(ModelSerializer):
     class Meta:
