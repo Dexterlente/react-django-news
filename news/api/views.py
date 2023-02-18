@@ -1,17 +1,20 @@
 from django.shortcuts import render
 from .models import User, Profile, Article, Post
+from django.http import HttpRequest
 #rest
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout, login as django_login
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from rest_framework import generics, status
+from rest_framework import generics, status, serializers
+from rest_framework.request import Request as DRFRequest
 
-from .serializers import *
+
+from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer
 # Create your views here.
 
 
@@ -32,14 +35,14 @@ from .serializers import *
 
 @api_view(["POST"])
 @permission_classes([AllowAny])
-def login(request):
+def login(request: DRFRequest):
     serializer = LoginSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.validated_data
-        login(request, user)
-        return Response(UserSerializer(user).data)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if user is not None:
+            django_login(request._request, user)
+            return Response(UserSerializer(user).data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])

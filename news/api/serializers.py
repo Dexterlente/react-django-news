@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from .models import User, Profile, Article, Post
 from rest_framework import serializers
+from django.contrib.auth import authenticate
 
 class UserSerializer(ModelSerializer):
     password_confirm = serializers.CharField(write_only=True)
