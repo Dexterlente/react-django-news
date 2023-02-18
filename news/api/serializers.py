@@ -30,6 +30,9 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid credentials")
         return user
 
+class LogoutSerializer(serializers.Serializer):
+    pass
+
 class ProfileSerializer(ModelSerializer):
     class Meta:
         model = Profile

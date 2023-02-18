@@ -14,7 +14,7 @@ from rest_framework import generics, status, serializers
 from rest_framework.request import Request as DRFRequest
 
 
-from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer
+from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
 # Create your views here.
 
 
@@ -44,11 +44,16 @@ def login(request: DRFRequest):
             return Response(UserSerializer(user).data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(["GET"])
+@api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def logout(request):
-    logout(request)
-    return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
+    serializer = LogoutSerializer(data=request.data)
+    if serializer.is_valid():
+        logout(request)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(["POST"])
 @permission_classes([AllowAny])
