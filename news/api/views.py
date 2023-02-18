@@ -75,6 +75,7 @@ def register(request):
 class article_list(generics.ListAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
+    permission_classes = [AllowAny]
 
 
 class article_detail(generics.RetrieveUpdateDestroyAPIView):
@@ -86,6 +87,7 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
+    permission_classes = [AllowAny]
 
 
 class post_detail(generics.RetrieveUpdateDestroyAPIView):
