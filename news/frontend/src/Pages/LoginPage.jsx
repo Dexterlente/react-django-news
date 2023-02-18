@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,10 +20,24 @@ function LoginPage() {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('Login successful');
+          navigate('/');
+        } else {
+          console.log('Login failed');
+        }
       })
+      // response.json())
+      // .then((data) => {
+      //   console.log(data);
+      //   if (data.status === 200) {
+      //     console.log('Login successful');
+      //     navigate('/');
+      //   } else {
+      //     console.log('Login failed');
+      //   }
+      // })
       .catch((error) => {
         console.error('Error:', error);
       });

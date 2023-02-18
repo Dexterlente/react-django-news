@@ -1,16 +1,11 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom'
 
-function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={(props) => isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-      )}
-    />
-  );
+const PrivateRoute = () => {
+    let auth = {'token':false}
+    return(
+        auth.token ? <Outlet/> : <Navigate to="/login"/>
+    )
 }
 
-export default PrivateRoute;
+export default PrivateRoute
+
