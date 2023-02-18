@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # django rest framework
     'rest_framework',
+    'rest_framework.authtoken',
     #django-cors-headers
     'corsheaders',
     # application
     'api.apps.ApiConfig',
-
 ]
 
 MIDDLEWARE = [

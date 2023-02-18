@@ -41,7 +41,7 @@ def logout(request):
 def register(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
+        user = serializer.save()
         token = Token.objects.create(user=user)
         return Response({'message': 'Successfully registered', 'token': token.key})
     else:
