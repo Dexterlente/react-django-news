@@ -24,20 +24,10 @@ function LoginPage() {
         if (response.status === 200) {
           console.log('Login successful');
           navigate('/');
-        } else {
+        } else { 
           console.log('Login failed');
         }
       })
-      // response.json())
-      // .then((data) => {
-      //   console.log(data);
-      //   if (data.status === 200) {
-      //     console.log('Login successful');
-      //     navigate('/');
-      //   } else {
-      //     console.log('Login failed');
-      //   }
-      // })
       .catch((error) => {
         console.error('Error:', error);
       });
