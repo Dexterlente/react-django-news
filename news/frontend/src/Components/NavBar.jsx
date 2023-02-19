@@ -32,13 +32,13 @@ const NavBar = () => {
 			</div>
 		<div className='relative border-double border-b-4 bg-[#F4F0DB] border-black'>
 			<div className='flex absolute right-8'>
-				<Link to='/about' className='mr-4 mt-2  hover:bg-gray-200 rounded-md'>
+				<Link to='/about' className='mr-4 mt-2  hover:bg-[#C4A484] rounded-md'>
 					About
 				</Link>
-				<Link to={"/articles"} className='mr-4 mt-2 hover:bg-gray-200 rounded-md'>
+				<Link to={"/articles"} className='mr-4 mt-2 hover:bg-[#C4A484] rounded-md'>
 					Crypto101
 				</Link>
-				<Link to={"/liveprice"} className='mr-10 mt-2 hover:bg-gray-200 rounded-md'>
+				<Link to={"/liveprice"} className='mr-10 mt-2 hover:bg-[#C4A484] rounded-md'>
 					Live Prices
 				</Link>
 			</div>
