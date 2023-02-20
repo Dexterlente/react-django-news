@@ -9,10 +9,10 @@ import ArticlePage from './Pages/ArticlePage'
 import LivePrice from './Pages/LivePrice'
 import PostPage from './Pages/PostPage'
 import About from './Pages/About'
-import LoginPage from './Pages/LoginPage';
-import LogoutButton from './Components/LogoutButton'
+import Logout from './Components/Logout'
+import PrivateRoute from './Contexts/PrivateRoute';
 
-
+const LoginPage = lazy(() => import('./Pages/LoginPage'));
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
 const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
 const RegisterForm = lazy(() =>  import('./Pages/RegisterForm'));
@@ -30,20 +30,20 @@ function App() {
   
   return (
     <div className='overflow-hidden'>
-        <Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route element={<NavAndFooter />}>
-              <Route path="/" element={<Cover />} />
-              <Route path="/post" element={<MainBody />} />
-              <Route path="/articles" element={<ArticlePage />} />
-              <Route path="/liveprice" element={<LivePrice />} />
-              <Route path="/post/:id" element={<PostContent />} />  
-              <Route path="/articles/:id" element={<ArticleContent />} /> 
-              <Route path="/postpage" element={<PostPage />} />     
-              <Route path="/about" element={<About />} />       
-              <Route path="/registration" element={<RegisterForm />} />        
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/logout" element={<LogoutButton />} />
+              <Route path="/" element={<NavAndFooter />}>
+                <Route path="/" element={<Cover />} />
+                <Route path="/post" element={<MainBody />} />
+                <Route path="/articles" element={<ArticlePage />} />
+                <Route path="/liveprice" element={<LivePrice />} />
+                <Route path="/post/:id" element={<PostContent />} />  
+                <Route path="/articles/:id" element={<ArticleContent />} /> 
+                <Route path="/postpage" element={<PostPage />} />     
+                <Route path="/about" element={<About />} />       
+                <Route path="/registration" element={<RegisterForm />} />        
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/logout" element={<Logout />} />
               </Route>
             </Routes>
         </Suspense>

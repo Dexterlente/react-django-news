@@ -10,7 +10,7 @@ function Logout() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': Cookies.get('csrftoken'), // Include CSRF token
+        'X-CSRFToken': Cookies.get('csrftoken') // Include CSRF token
       },
     })
       .then(() => {

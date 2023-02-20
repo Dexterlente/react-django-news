@@ -1,11 +1,22 @@
-import { Outlet, Navigate } from 'react-router-dom'
+import React from 'react';
+import { Route, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-const PrivateRoute = () => {
-    let auth = {'token':false}
-    return(
-        auth.token ? <Outlet/> : <Navigate to="/login"/>
-    )
+function PrivateRoute({ component: Component, ...rest }) {
+  const isAuthenticated = Cookies.get('sessionid');
+  
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        return isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Navigate to="/login" replace />
+        );
+      }}
+    />
+  );
 }
 
-export default PrivateRoute
-
+export default PrivateRoute;
