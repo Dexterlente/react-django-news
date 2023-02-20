@@ -10,6 +10,7 @@ import LivePrice from './Pages/LivePrice'
 import PostPage from './Pages/PostPage'
 import About from './Pages/About'
 import LoginPage from './Pages/LoginPage';
+import LogoutButton from './Components/LogoutButton'
 
 
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
@@ -42,6 +43,7 @@ function App() {
               <Route path="/about" element={<About />} />       
               <Route path="/registration" element={<RegisterForm />} />        
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/logout" element={<LogoutButton />} />
               </Route>
             </Routes>
         </Suspense>

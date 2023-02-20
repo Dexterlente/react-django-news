@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import withAuth from '../Contexts/withAuth';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -103,4 +104,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default withAuth(RegisterForm);

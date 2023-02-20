@@ -13,6 +13,8 @@ from django.contrib.auth.models import User
 from rest_framework import generics, status, serializers
 from rest_framework.request import Request as DRFRequest
 from rest_framework.views import APIView
+from django.utils.decorators import method_decorator
+
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
 # Create your views here.
@@ -43,10 +45,14 @@ from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, Art
 #             django_login(request._request, user)
 #             return Response(UserSerializer(user).data)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class LoginAPIView(APIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
+        if request.user.is_authenticated:
+            return Response({'error': 'User is already authenticated.'}, status=status.HTTP_400_BAD_REQUEST)
+
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             username = serializer.data['username']
@@ -54,11 +60,13 @@ class LoginAPIView(APIView):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return Response({'success': 'Logged in successfully'})
+                sessionid = request.session.session_key  # get session key
+                return Response({'sessionid': sessionid, 'success': 'Logged in successfully'})
             else:
                 return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])

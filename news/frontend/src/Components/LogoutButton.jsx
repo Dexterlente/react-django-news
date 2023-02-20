@@ -1,44 +1,33 @@
-import React from "react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
+function Logout() {
+  const navigate = useNavigate();
 
-function LogoutButton() {
   const handleLogout = () => {
-    fetch('/api/logout/', {
+    fetch('http://127.0.0.1:8000/api/logout/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken') // assuming you have implemented getCookie() function to get the CSRF token
-      }
+        'X-CSRFToken': Cookies.get('csrftoken'), // Include CSRF token
+      },
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to logout')
-      }
-      // redirect to login page or refresh the current page
-      window.location.href = '/login/';
-    })
-    .catch(error => {
-      console.error(error);
-    });
+      .then(() => {
+        Cookies.remove('sessionid'); // Remove session ID cookie
+        navigate('/login'); // Redirect to login page
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <div>
+      <p>Are you sure you want to logout?</p>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
   );
 }
 
-export default LogoutButton;
+export default Logout;

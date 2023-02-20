@@ -1,68 +1,56 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import withAuth from '../Contexts/withAuth';
 
-function LoginPage() {
+function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = {
-      username: username,
-      password: password,
-    };
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = { username: username, password: password };
+
     fetch('http://127.0.0.1:8000/api/login/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
       },
       body: JSON.stringify(data),
     })
-      .then((response) => {
-        if (response.ok) {
-          // set the session ID in a cookie
-          const cookies = response.headers.get('Set-Cookie');
-          const sessionID = cookies.split('sessionid=')[1].split(';')[0];
-          Cookies.set('sessionid', sessionID);
-          navigate('/');
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // Successful login logic here
+          Cookies.set('sessionid', data.sessionid); // Save session ID in a cookie
+          navigate('/'); // Redirect to dashboard page
         } else {
-          console.log('Login failed');
+          // Failed login logic here
+          console.log(data.error);
         }
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   };
-  
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Username:</label>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
+      <button type="submit">Login</button>
+    </form>
   );
 }
 
-export default LoginPage;
+export default withAuth(Login);
+
+
