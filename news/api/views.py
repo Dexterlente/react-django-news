@@ -14,6 +14,7 @@ from rest_framework import generics, status, serializers
 from rest_framework.request import Request as DRFRequest
 from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
+from rest_framework.authentication import SessionAuthentication
 
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
@@ -68,15 +69,24 @@ class LoginAPIView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["POST"])
-@permission_classes([IsAuthenticated])
-def logout(request):
-    serializer = LogoutSerializer(data=request.data)
-    if serializer.is_valid():
+# @api_view(["POST"])
+# @permission_classes([IsAuthenticated])
+# def logout(request):
+#     serializer = LogoutSerializer(data=request.data)
+#     if serializer.is_valid():
+#         logout(request)
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+#     else:
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LogoutView(APIView):
+    serializer_class = LogoutSerializer
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, format=None):
         logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["POST"])

@@ -150,3 +150,9 @@ AUTH_USER_MODEL = 'api.User'
 
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
+
+# CSRF_COOKIE_HTTPONLY = False
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+# ]
