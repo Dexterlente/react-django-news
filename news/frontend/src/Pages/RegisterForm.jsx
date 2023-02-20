@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ const RegisterForm = () => {
     first_name: '',
     last_name: '',
   });
+  const Navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,6 +29,8 @@ const RegisterForm = () => {
       .then(data => {
         console.log(data);
         // handle successful response here
+        //success redirect login
+        Navigate('/login')
       })
       .catch(error => {
         console.error('Error:', error);
