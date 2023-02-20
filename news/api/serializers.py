@@ -20,15 +20,38 @@ class UserSerializer(ModelSerializer):
         user.save()
         return user
 
+# class LoginSerializer(serializers.Serializer):
+#     username = serializers.CharField()
+#     password = serializers.CharField()
+
+#     def validate(self, data):
+#         user = authenticate(username=data['username'], password=data['password'])
+#         if user and user.is_active:
+#             return user
+#         raise serializers.ValidationError("Incorrect Credentials")
+
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
-    password = serializers.CharField(write_only=True)
+    password = serializers.CharField(style={'input_type': 'password'})
 
     def validate(self, data):
-        user = authenticate(username=data['username'], password=data['password'])
-        if not user:
-            raise serializers.ValidationError("Invalid credentials")
-        return user
+        username = data.get('username')
+        password = data.get('password')
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user:
+                if user.is_active:
+                    data['user'] = user
+                else:
+                    raise serializers.ValidationError('User account is disabled.')
+            else:
+                raise serializers.ValidationError('Unable to log in with provided credentials.')
+        else:
+            raise serializers.ValidationError('Must include "username" and "password".')
+
+        return data
+
 
 class LogoutSerializer(serializers.Serializer):
     pass

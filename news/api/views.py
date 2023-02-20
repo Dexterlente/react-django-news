@@ -7,12 +7,12 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
-from django.contrib.auth import authenticate, logout, login as django_login
+from django.contrib.auth import authenticate, logout, login
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from rest_framework import generics, status, serializers
 from rest_framework.request import Request as DRFRequest
-
+from rest_framework.views import APIView
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
 # Create your views here.
@@ -33,16 +33,32 @@ from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, Art
 #     login(request, user)
 #     return Response(UserSerializer(user).data)
 
-@api_view(["POST"])
-@permission_classes([AllowAny])
-def login(request: DRFRequest):
-    serializer = LoginSerializer(data=request.data)
-    if serializer.is_valid():
-        user = serializer.validated_data
-        if user is not None:
-            django_login(request._request, user)
-            return Response(UserSerializer(user).data)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# @api_view(["POST"])
+# @permission_classes([AllowAny])
+# def login(request: DRFRequest):
+#     serializer = LoginSerializer(data=request.data)
+#     if serializer.is_valid():
+#         user = serializer.validated_data
+#         if user is not None:
+#             django_login(request._request, user)
+#             return Response(UserSerializer(user).data)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class LoginAPIView(APIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            username = serializer.data['username']
+            password = serializer.data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return Response({'success': 'Logged in successfully'})
+            else:
+                return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])

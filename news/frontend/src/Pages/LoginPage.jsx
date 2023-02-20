@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function LoginPage() {
       username: username,
       password: password,
     };
-
+  
     fetch('http://127.0.0.1:8000/api/login/', {
       method: 'POST',
       headers: {
@@ -21,10 +22,13 @@ function LoginPage() {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.status === 200) {
-          console.log('Login successful');
+        if (response.ok) {
+          // set the session ID in a cookie
+          const cookies = response.headers.get('Set-Cookie');
+          const sessionID = cookies.split('sessionid=')[1].split(';')[0];
+          Cookies.set('sessionid', sessionID);
           navigate('/');
-        } else { 
+        } else {
           console.log('Login failed');
         }
       })
@@ -32,6 +36,7 @@ function LoginPage() {
         console.error('Error:', error);
       });
   };
+  
 
   return (
     <div>

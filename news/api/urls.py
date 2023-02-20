@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.views import APIView
 
 
 urlpatterns = [
     path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
+    path('login/', views.LoginAPIView.as_view(), name='login'),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'), # optional, for obtaining token using username and password
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
     # path('articles/', views.article_list, name='articles'),
