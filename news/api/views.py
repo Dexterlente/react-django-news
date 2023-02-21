@@ -15,6 +15,7 @@ from rest_framework.request import Request as DRFRequest
 from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
 from rest_framework.authentication import SessionAuthentication
+from django.views.decorators.csrf import csrf_exempt
 
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
@@ -78,7 +79,7 @@ class LoginAPIView(APIView):
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 #     else:
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
     serializer_class = LogoutSerializer
     authentication_classes = [SessionAuthentication]
