@@ -9,7 +9,7 @@ import ArticlePage from './Pages/ArticlePage'
 import LivePrice from './Pages/LivePrice'
 import PostPage from './Pages/PostPage'
 import About from './Pages/About'
-import Logout from './Components/Logout'
+// import Logout from './Components/Logout'
 import PrivateRoute from './Contexts/PrivateRoute';
 
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
@@ -43,7 +43,7 @@ function App() {
                 <Route path="/about" element={<About />} />       
                 <Route path="/registration" element={<RegisterForm />} />        
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/logout" element={<Logout />} />
+                {/* <Route path="/logout" element={<Logout />} /> */}
               </Route>
             </Routes>
         </Suspense>

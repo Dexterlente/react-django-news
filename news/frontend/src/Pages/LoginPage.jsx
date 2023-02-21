@@ -25,7 +25,9 @@ function Login() {
         if (data.success) {
           // Successful login logic here
           Cookies.set('sessionid', data.sessionid); // Save session ID in a cookie
+          window.location.reload(true); // hard refresh to render the logout button
           navigate('/'); // Redirect to dashboard page
+          
         } else {
           // Failed login logic here
           console.log(data.error);

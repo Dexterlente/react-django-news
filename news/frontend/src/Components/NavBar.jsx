@@ -3,7 +3,9 @@ import Daily from '../Assets/Daily.png'
 import white from '../Assets/white.png'
 import DailyWhite from '../Assets/DailyWhite.png'
 import { AiOutlineClose, AiOutlineMenu, AiOutlineCopyrightCircle } from "react-icons/ai";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import LogoutButton from './LogoutButton'
+
 
 
 let now = new Date();
@@ -20,6 +22,13 @@ const NavBar = () => {
 	const handleNav = () => {
 		setNav(!nav);
 	};
+
+const navigate = useNavigate();
+const handleLogout = () => {
+	// do something after logout
+	navigate('/');
+	};
+
 
 
   return (
@@ -41,6 +50,9 @@ const NavBar = () => {
 				<Link to={"/liveprice"} className='mr-10 mt-2 hover:bg-[#C4A484] rounded-md'>
 					Live Prices
 				</Link>
+				<div className='mr-10 mt-2 hover:bg-[#C4A484] rounded-md'>
+				<LogoutButton onLogout={handleLogout} >Logout</LogoutButton>
+				</div>
 			</div>
 			<div className='p-2'>
 				<div className='pl-10'>
