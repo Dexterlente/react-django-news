@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 
-function ArchiveButton({ id, isArchived, onArchiveChange }) {
+function ArchiveButton({ id, archived_post, onArchiveChange }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Check if user is logged in on component mount
@@ -21,17 +21,17 @@ function ArchiveButton({ id, isArchived, onArchiveChange }) {
       return;
     }
 
-    const response = await fetch(`http://127.0.0.1:8000/api/posts/${id}`, {
-      method: "PUT",
+    const response = await fetch(`http://127.0.0.1:8000/api/posts/${id}/`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionId}`,
       },
-      body: JSON.stringify({ isArchived: !isArchived }),
+      body: JSON.stringify({ archived_post: !archived_post }),
     });
 
     if (response.ok) {
-      onArchiveChange(id, !isArchived);
+      onArchiveChange(id, !archived_post);
     } else {
       alert("There was an error archiving/unarchiving the item.");
     }
@@ -39,7 +39,7 @@ function ArchiveButton({ id, isArchived, onArchiveChange }) {
 
   return (
     <button onClick={handleArchiveClick}>
-      {isArchived ? "Unarchive" : "Archive"}
+      {archived_post ? "Unarchive" : "Archive"}
     </button>
   );
 }

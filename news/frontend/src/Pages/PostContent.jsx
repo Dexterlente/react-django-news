@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ArchiveButton from '../Components/ArchiveButton'
 
 const PostContent = () => {
     const { id } = useParams();
     const [PostContent, setPostContent] = useState({});
     const [loading, setLoading] = useState(true);
-  
+    const [archived, setArchived] = useState(false);
+
     const fetchPostContent = (id) => {
       fetch(`http://127.0.0.1:8000/api/posts/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setPostContent(data);
+          setArchived(data.archived_post);
           setLoading(false);
         });
     };
@@ -19,6 +22,11 @@ const PostContent = () => {
       fetchPostContent(id);
     }, [id]);
   
+    const handleArchiveChange = (id, archived) => {
+      setArchived(archived);
+    }
+
+
     return (
       <div>
         {loading ? (
@@ -37,6 +45,11 @@ const PostContent = () => {
                 })}
           </p>
             <p className='text-[16px] md:m-24 m-8'>{PostContent.content_post}</p>
+            <ArchiveButton
+              id={id}
+              archived_post={archived}
+              onArchiveChange={handleArchiveChange}
+            />
           </div>
         )}
       </div>
