@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
+import RequireAuth from '../Contexts/RequireAuth'
 
 function CreatePost() {
   const [title, setTitle] = useState("");
@@ -96,5 +97,5 @@ function CreatePost() {
   );
 }
 
-// export default RequireAuth(CreatePost);
-export default CreatePost;
+export default RequireAuth (CreatePost);
+// export default CreatePost;
