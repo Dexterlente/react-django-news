@@ -38,7 +38,11 @@ function ArchiveButton({ id, archived_post, onArchiveChange }) {
   };
 
   return (
-    <button onClick={handleArchiveClick}>
+    <button onClick={handleArchiveClick}
+    className={`py-2 mb-10 px-4 font-semibold rounded-lg shadow-md text-white hover:opacity-70 ${
+      archived_post ? "bg-[red]" : "bg-[green]"
+    }`}
+    >
       {archived_post ? "Unarchive" : "Archive"}
     </button>
   );
