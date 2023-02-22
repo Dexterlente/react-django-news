@@ -19,34 +19,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
-# Create your views here.
-
-
-# @api_view(["POST"])
-# @permission_classes([AllowAny])
-# def login(request):
-#     username = request.data.get("username")
-#     password = request.data.get("password")
-#     if username is None or password is None:
-#         return Response({'error': 'Please provide both username and password'},
-#                         status=status.HTTP_400_BAD_REQUEST)
-#     user = authenticate(username=username, password=password)
-#     if not user:
-#         return Response({'error': 'Invalid Credentials'},
-#                         status=status.HTTP_404_NOT_FOUND)
-#     login(request, user)
-#     return Response(UserSerializer(user).data)
-
-# @api_view(["POST"])
-# @permission_classes([AllowAny])
-# def login(request: DRFRequest):
-#     serializer = LoginSerializer(data=request.data)
-#     if serializer.is_valid():
-#         user = serializer.validated_data
-#         if user is not None:
-#             django_login(request._request, user)
-#             return Response(UserSerializer(user).data)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CurrentUserView(APIView):
     permission_classes = [IsAuthenticated]
