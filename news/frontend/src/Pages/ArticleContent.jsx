@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ArchiveButtonArticle from '../Components/ArchiveButtonArticle'
 
 const ArticleContent = () => {
     const { id } = useParams();
     const [ArticleContent, setArticleContent] = useState({});
     const [loading, setLoading] = useState(true);
+    const [archived, setArchived] = useState(false);
   
     const fetchArticleContent = (id) => {
       fetch(`http://127.0.0.1:8000/api/articles/${id}`)
         .then((res) => res.json())
         .then((data) => {
             setArticleContent(data);
+            setArchived(data.archived);
             setLoading(false);
         });
     };
@@ -19,6 +22,12 @@ const ArticleContent = () => {
         fetchArticleContent(id);
     }, [id]);
   
+    const handleArchiveChange = (id, archived) => {
+      setArchived(archived);
+    }
+
+
+
     return (
       <div>
         {loading ? (
@@ -37,6 +46,11 @@ const ArticleContent = () => {
                 })}
           </p>
             <p className='text-[16px] md:m-24 m-8'>{ArticleContent.content}</p>
+            <ArchiveButtonArticle
+              id={id}
+              archived={archived}
+              onArchiveChange={handleArchiveChange}
+            />
           </div>
         )}
       </div>

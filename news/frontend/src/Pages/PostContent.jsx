@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ArchiveButton from '../Components/ArchiveButton'
+import ArchiveButtonPost from '../Components/ArchiveButtonPost'
 
 const PostContent = () => {
     const { id } = useParams();
@@ -45,7 +45,7 @@ const PostContent = () => {
                 })}
           </p>
             <p className='text-[16px] md:m-24 m-8'>{PostContent.content_post}</p>
-            <ArchiveButton
+            <ArchiveButtonPost
               id={id}
               archived_post={archived}
               onArchiveChange={handleArchiveChange}
