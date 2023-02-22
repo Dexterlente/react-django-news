@@ -91,7 +91,7 @@ method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
     serializer_class = LogoutSerializer
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated] remove this shit that is why im getting 403 F U
 
     def post(self, request, format=None):
         # Delete the user session data
