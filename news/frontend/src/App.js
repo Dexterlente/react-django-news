@@ -8,13 +8,13 @@ import { lazy, Suspense } from 'react'
 import ArticlePage from './Pages/ArticlePage'
 import PostPage from './Pages/PostPage'
 import About from './Pages/About'
+import LivePrice from './Pages/LivePrice'
 
-const LivePrice = lazy(() =>('./Pages/LivePrice'));
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
 const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
 const RegisterForm = lazy(() =>  import('./Pages/RegisterForm'));
-const CreatePost = lazy(() => import('./Pages/authPages/CreatePost'));
+const CreatePost = lazy(() => import('./Pages/CreatePost'));
 
 function App() {
   const NavAndFooter = () => {
