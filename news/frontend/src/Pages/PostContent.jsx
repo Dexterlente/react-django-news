@@ -32,7 +32,7 @@ const PostContent = () => {
         {loading ? (
           <p>Loading...................</p>
         ) : (
-          <div className='text-center'>
+          <div className='text-center md:mx-32'>
             <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{PostContent.title_post}</h1>
             <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
               By: {PostContent.author_post.first_name} {PostContent.author_post.last_name}

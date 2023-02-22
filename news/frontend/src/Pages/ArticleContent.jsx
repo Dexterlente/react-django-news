@@ -33,7 +33,7 @@ const ArticleContent = () => {
         {loading ? (
           <p>Loading...................</p>
         ) : (
-          <div className='text-center'>
+          <div className='text-center md:mx-32'>
             <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{ArticleContent.title}</h1>
             <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
               By: {ArticleContent.author.first_name} {ArticleContent.author.last_name}
