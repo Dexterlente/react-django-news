@@ -5,10 +5,11 @@ import Cookies from 'js-cookie';
 
 const RequireAuth = (WrappedComponent) => {
     return function(props) {
-	const sessionid = Cookies.get('sessionid');
+
 	const Navigate = useNavigate();
 
 	useEffect(() => {
+		const sessionid = Cookies.get('sessionid');
 		if (!sessionid) {
 			Navigate("/login");
 		}

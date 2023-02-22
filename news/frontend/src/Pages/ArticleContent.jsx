@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ArchiveButtonArticle from '../Components/ArchiveButtonArticle'
+import Cookies from 'js-cookie';
 
 const ArticleContent = () => {
     const { id } = useParams();
     const [ArticleContent, setArticleContent] = useState({});
     const [loading, setLoading] = useState(true);
     const [archived, setArchived] = useState(false);
+    const [sessionID, setSessionID] = useState('');
   
     const fetchArticleContent = (id) => {
       fetch(`http://127.0.0.1:8000/api/articles/${id}`)
@@ -20,6 +22,7 @@ const ArticleContent = () => {
   
     useEffect(() => {
         fetchArticleContent(id);
+        setSessionID(Cookies.get('sessionid'));
     }, [id]);
   
     const handleArchiveChange = (id, archived) => {
@@ -46,11 +49,13 @@ const ArticleContent = () => {
                 })}
           </p>
             <p className='text-[16px] md:m-24 m-8'>{ArticleContent.content}</p>
+            {sessionID && (
             <ArchiveButtonArticle
               id={id}
               archived={archived}
               onArchiveChange={handleArchiveChange}
             />
+            )}
           </div>
         )}
       </div>

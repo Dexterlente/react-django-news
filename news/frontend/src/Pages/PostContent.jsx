@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ArchiveButtonPost from '../Components/ArchiveButtonPost'
+import Cookies from 'js-cookie';
 
 const PostContent = () => {
     const { id } = useParams();
     const [PostContent, setPostContent] = useState({});
     const [loading, setLoading] = useState(true);
     const [archived, setArchived] = useState(false);
+    const [sessionID, setSessionID] = useState('');
+
 
     const fetchPostContent = (id) => {
       fetch(`http://127.0.0.1:8000/api/posts/${id}`)
@@ -20,6 +23,7 @@ const PostContent = () => {
   
     useEffect(() => {
       fetchPostContent(id);
+      setSessionID(Cookies.get('sessionid'));
     }, [id]);
   
     const handleArchiveChange = (id, archived) => {
@@ -45,11 +49,13 @@ const PostContent = () => {
                 })}
           </p>
             <p className='text-[16px] md:m-24 m-8'>{PostContent.content_post}</p>
+            {sessionID && (
             <ArchiveButtonPost
               id={id}
               archived_post={archived}
               onArchiveChange={handleArchiveChange}
-            />
+              />
+            )}
           </div>
         )}
       </div>
