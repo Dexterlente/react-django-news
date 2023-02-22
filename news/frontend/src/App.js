@@ -9,8 +9,6 @@ import ArticlePage from './Pages/ArticlePage'
 import LivePrice from './Pages/LivePrice'
 import PostPage from './Pages/PostPage'
 import About from './Pages/About'
-// import Logout from './Components/Logout'
-import PrivateRoute from './Contexts/PrivateRoute';
 
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
@@ -45,7 +43,6 @@ function App() {
                 <Route path="/registration" element={<RegisterForm />} />        
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/createpost" element={<CreatePost />} />
-                {/* <Route path="/logout" element={<Logout />} /> */}
               </Route>
             </Routes>
         </Suspense>
