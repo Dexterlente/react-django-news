@@ -94,7 +94,10 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
+        # Delete the user session data
+        request.session.flush()
         logout(request)
+         # Call the Django auth `logout` method to remove the user authentication data
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

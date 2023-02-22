@@ -13,12 +13,16 @@ function LogoutButton({ onLogout }) {
       setIsLoggedIn(false);
     }
   }, []);
+  // const sessionId = Cookies.get('sessionid');
+  // const csrfToken = Cookies.get('csrftoken');
 
   const handleLogout = () => {
     fetch('http://127.0.0.1:8000/api/logout/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        // Authorization: `Bearer ${sessionId}`,
+        // 'X-CSRFToken': csrfToken,
       },
     })
       .then(() => {
@@ -45,41 +49,3 @@ LogoutButton.propTypes = {
 };
 
 export default LogoutButton;
-
-
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import Cookies from 'js-cookie';
-
-// function LogoutButton({ onLogout, isLoggedIn }) {
-//   const handleLogout = () => {
-//     fetch('http://127.0.0.1:8000/api/logout/', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     })
-//       .then(() => {
-//         Cookies.remove('sessionid');
-//         onLogout();
-//       })
-//       .catch((error) => {
-//         console.error('Error:', error);
-//       });
-//   };
-
-//   if (!isLoggedIn) {
-//     return null;
-//   }
-
-//   return (
-//     <button onClick={handleLogout}>Logout</button>
-//   );
-// }
-
-// LogoutButton.propTypes = {
-//   onLogout: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired,
-// };
-
-// export default LogoutButton;

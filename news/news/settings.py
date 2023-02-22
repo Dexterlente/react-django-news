@@ -143,6 +143,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # allow cors
 CORS_ALLOW_ALL_ORIGINS = True
 
+# Allow cookies to be included in cross-origin requests.
+CORS_ALLOW_CREDENTIALS = True
+
+
 AUTH_USER_MODEL = 'api.User'
 
 # SESSION_COOKIE_SECURE = True
