@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 
 
 urlpatterns = [
+    path('currentuser/', views.CurrentUserView.as_view()),
     path('register/', views.register, name='register'),
     path('login/', views.LoginAPIView.as_view(), name='login'),
     # path('api-token-auth/', obtain_auth_token, name='api_token_auth'), # optional, for obtaining token using username and password

@@ -48,6 +48,14 @@ from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, Art
 #             return Response(UserSerializer(user).data)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
 class LoginAPIView(APIView):
     serializer_class = LoginSerializer
 

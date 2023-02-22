@@ -16,6 +16,7 @@ const LoginPage = lazy(() => import('./Pages/LoginPage'));
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
 const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
 const RegisterForm = lazy(() =>  import('./Pages/RegisterForm'));
+const CreatePost = lazy(() => import('./Pages/authPages/CreatePost'));
 
 function App() {
   const NavAndFooter = () => {
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/about" element={<About />} />       
                 <Route path="/registration" element={<RegisterForm />} />        
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/createpost" element={<CreatePost />} />
                 {/* <Route path="/logout" element={<Logout />} /> */}
               </Route>
             </Routes>
