@@ -6,10 +6,10 @@ import Footer from './Components/Footer'
 import { Outlet, Route, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import ArticlePage from './Pages/ArticlePage'
-import LivePrice from './Pages/LivePrice'
 import PostPage from './Pages/PostPage'
 import About from './Pages/About'
 
+const LivePrice = lazy(() =>('./Pages/LivePrice'));
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
 const PostContent = lazy(() =>  import('./Pages/PostContent'));
 const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
