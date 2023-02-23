@@ -16,17 +16,17 @@ from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
 from rest_framework.authentication import SessionAuthentication
 from django.views.decorators.csrf import csrf_exempt
-
+#from rest_framework.permissions import BasePermission
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
 
-class CurrentUserView(APIView):
-    permission_classes = [IsAuthenticated]
+# class CurrentUserView(APIView):
+#     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        user = request.user
-        serializer = UserSerializer(user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+#     def get(self, request):
+#         user = request.user
+#         serializer = UserSerializer(user)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
         
 class LoginAPIView(APIView):
     serializer_class = LoginSerializer
@@ -59,11 +59,16 @@ class LoginAPIView(APIView):
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 #     else:
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class SessionAuthenticationPermission(BasePermission):
+#     def has_permission(self, request, view):
+#         return request.user.is_authenticated or request.session.session_key is not None
+
 method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
     serializer_class = LogoutSerializer
     authentication_classes = [SessionAuthentication]
     #permission_classes = [IsAuthenticated] remove this shit that is why im getting 403 F U
+    # permission_classes = [SessionAuthenticationPermission]
 
     def post(self, request, format=None):
         # Delete the user session data
@@ -90,10 +95,18 @@ def register(request):
 #     serializer = ArticleSerializer(articles, many=True)
 #     return Response(serializer.data)
 
-class article_list(generics.ListAPIView):
+# class article_list(generics.ListCreateAPIView):
+#     queryset = Article.objects.all().order_by('-time_created')
+#     serializer_class = ArticleSerializer
+#     permission_classes = [AllowAny]
+class article_list(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
-    permission_classes = [AllowAny]
+    
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [IsAuthenticated(),]
+        return [AllowAny(),]
 
 
 class article_detail(generics.RetrieveUpdateDestroyAPIView):
@@ -105,7 +118,12 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
+
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [IsAuthenticated(),]
+        return [AllowAny(),]
 
 
 class post_detail(generics.RetrieveUpdateDestroyAPIView):
