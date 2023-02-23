@@ -16,6 +16,7 @@ from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
 from rest_framework.authentication import SessionAuthentication
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.sessions.models import Session
 #from rest_framework.permissions import BasePermission
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
@@ -50,31 +51,15 @@ class LoginAPIView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(["POST"])
-# @permission_classes([IsAuthenticated])
-# def logout(request):
-#     serializer = LogoutSerializer(data=request.data)
-#     if serializer.is_valid():
-#         logout(request)
-#         return Response(status=status.HTTP_204_NO_CONTENT)
-#     else:
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-# class SessionAuthenticationPermission(BasePermission):
-#     def has_permission(self, request, view):
-#         return request.user.is_authenticated or request.session.session_key is not None
-
-method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
     serializer_class = LogoutSerializer
     authentication_classes = [SessionAuthentication]
-    #permission_classes = [IsAuthenticated] remove this shit that is why im getting 403 F U
-    # permission_classes = [SessionAuthenticationPermission]
 
     def post(self, request, format=None):
-        # Delete the user session data
-        request.session.flush()
-        logout(request)
-         # Call the Django auth `logout` method to remove the user authentication data
+        session_id = request.data.get('sessionid')
+        if session_id:
+            Session.objects.filter(session_key=session_id).delete()
+            logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

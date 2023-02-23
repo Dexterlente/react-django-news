@@ -13,17 +13,20 @@ function LogoutButton({ onLogout }) {
       setIsLoggedIn(false);
     }
   }, []);
-  // const sessionId = Cookies.get('sessionid');
-  // const csrfToken = Cookies.get('csrftoken');
+
 
   const handleLogout = () => {
+  const sessionId = Cookies.get('sessionid');
+  const csrfToken = Cookies.get('csrftoken');
+
     fetch('http://127.0.0.1:8000/api/logout/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         // Authorization: `Bearer ${sessionId}`,
-        // 'X-CSRFToken': csrfToken,
+        'X-CSRFToken': csrfToken,
       },
+      body: JSON.stringify({ sessionid: sessionId }),
     })
       .then(() => {
         Cookies.remove('sessionid');

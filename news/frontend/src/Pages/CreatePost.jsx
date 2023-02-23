@@ -22,7 +22,7 @@ const CreatePost = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const sessionId = Cookies.get("sessionId");
+    const sessionId = Cookies.get("sessionid");
     if (!sessionId) {
       alert("You must be logged in to create a post.");
       return;
