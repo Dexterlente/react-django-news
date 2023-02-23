@@ -7,7 +7,7 @@ const requireAuth = (WrappedComponent) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      const sessionID = Cookies.get("sessionID");
+      const sessionID = Cookies.get("sessionid");
       if (!sessionID) {
         navigate("/login");
       }
