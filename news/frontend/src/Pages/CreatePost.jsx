@@ -22,8 +22,8 @@ const CreatePost = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const sessionId = Cookies.get("sessionid");
-    if (!sessionId) {
+    const sessionid = Cookies.get("sessionid");
+    if (!sessionid) {
       alert("You must be logged in to create a post.");
       return;
     }
@@ -33,19 +33,23 @@ const CreatePost = () => {
       content,
       image_url: imageUrl,
     };
-
+    const csrfToken = Cookies.get('csrftoken');
+    
     const requestOptions = {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${sessionId}`,
+        Authorization: `Bearer ${sessionid}`,
         "Content-Type": "application/json",
+        'X-CSRFToken': csrfToken,
       },
       body: JSON.stringify(postData),
     };
 
     fetch("http://127.0.0.1:8000/api/posts/", requestOptions)
+
       .then((response) => response.json())
       .then((data) => {
+        console.log(requestOptions);
         console.log("New post created:", data);
         setTitle("");
         setContent("");

@@ -74,16 +74,6 @@ def register(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['GET'])
-# def article_list(request):
-#     articles = Article.objects.all().order_by('-time_created')
-#     serializer = ArticleSerializer(articles, many=True)
-#     return Response(serializer.data)
-
-# class article_list(generics.ListCreateAPIView):
-#     queryset = Article.objects.all().order_by('-time_created')
-#     serializer_class = ArticleSerializer
-#     permission_classes = [AllowAny]
 class article_list(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
@@ -103,6 +93,7 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
+    authentication_classes = [SessionAuthentication]
     # permission_classes = [AllowAny]
 
     def get_permissions(self):
@@ -117,44 +108,6 @@ class post_detail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     permission_classes = [AllowAny]
     
-# def article_detail(request, pk):
-#     article = Article.objects.get(pk=pk)
-#     serializer = ArticleSerializer(article)
-#     return Response(serializer.data)
-"""@api_view(['GET'])
-@permission_classes([AllowAny])
-def article_detail(request, pk):
-    try:
-        article = Article.objects.get(pk=pk)
-    except Article.DoesNotExist:
-        return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
-    serializer = ArticleSerializer(article)
-    return Response(serializer.data)"""
-
-"""@api_view(['GET'])
-def post_list(request):
-    posts = Post.objects.all().order_by('-time_created_post')
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)"""
-
-# @api_view(['GET'])
-# @permission_classes([AllowAny])
-# def post_detail(request, pk):
-#     post = Post.objects.get(pk=pk)
-#     serializer = PostSerializer(post)
-#     return Response(serializer.data)
-
-
-
-"""@api_view(['GET'])
-@permission_classes([AllowAny])
-def post_detail(request, pk):
-    try:
-        post = Post.objects.get(pk=pk)
-    except Post.DoesNotExist:
-        return Response({'error': 'Article not found'}, status=status.HTTP_404_NOT_FOUND)
-    serializer = PostSerializer(post)
-    return Response(serializer.data)"""
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])

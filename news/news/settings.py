@@ -148,25 +148,3 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 AUTH_USER_MODEL = 'api.User'
-
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_SAMESITE = 'None'
-
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-
-# CSRF_COOKIE_HTTPONLY = False
-
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-# ]
-# APPEND_SLASH = False
-
-# REST_FRAMEWORK = {
-#     # 'DEFAULT_PERMISSION_CLASSES': [
-#     #     'rest_framework.permissions.IsAuthenticated',
-#     # ],
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.SessionAuthentication',
-#     ]
-# }

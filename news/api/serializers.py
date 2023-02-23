@@ -71,7 +71,7 @@ class ArticleSerializer(ModelSerializer):
 
 class PostSerializer(ModelSerializer):
     author_post = UserSerializer(read_only=True)
-    # id = serializers.UUIDField(format='hex', read_only=True)
+
 
     class Meta:
         model = Post
