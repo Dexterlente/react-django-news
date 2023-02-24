@@ -11,10 +11,11 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { username: username, password: password };
-
+    console.log(Cookies.get('csrftoken'));
     fetch('http://127.0.0.1:8000/api/login/', {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
@@ -24,6 +25,7 @@ function Login() {
       .then((data) => {
         if (data.success) {
           // Successful login logic here
+          Cookies.set("csrftoken", data.csrftoken);
           Cookies.set('sessionid', data.sessionid); // Save session ID in a cookie
           window.location.reload(true); // hard refresh to render the logout button
           navigate('/'); // Redirect to dashboard page

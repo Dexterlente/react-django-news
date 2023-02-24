@@ -72,8 +72,8 @@ class ArticleSerializer(ModelSerializer):
 class PostSerializer(ModelSerializer):
     author_post = UserSerializer(read_only=True)
 
-
     class Meta:
         model = Post
         fields = '__all__'
 
+        csrf_header_name = 'X-CSRFToken'

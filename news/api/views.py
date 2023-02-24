@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import User, Profile, Article, Post
 from django.http import HttpRequest
 #rest
+from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -15,20 +16,22 @@ from rest_framework.request import Request as DRFRequest
 from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
 from rest_framework.authentication import SessionAuthentication
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.contrib.sessions.models import Session
 #from rest_framework.permissions import BasePermission
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
+from django.middleware.csrf import get_token
 
-# class CurrentUserView(APIView):
-#     permission_classes = [IsAuthenticated]
 
-#     def get(self, request):
-#         user = request.user
-#         serializer = UserSerializer(user)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-        
+@method_decorator(ensure_csrf_cookie, name='dispatch')
+class GetCSRFToken(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def get(self, request, format=None):
+        return Response({ 'success': 'CSRF cookie set' })
+
+
 class LoginAPIView(APIView):
     serializer_class = LoginSerializer
 
@@ -44,6 +47,7 @@ class LoginAPIView(APIView):
             if user is not None:
                 login(request, user)
                 sessionid = request.session.session_key  # get session key
+                get_token(request)
                 return Response({'sessionid': sessionid, 'success': 'Logged in successfully'})
             else:
                 return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -90,11 +94,12 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     permission_classes = [AllowAny]
 
+@method_decorator(csrf_exempt, name='dispatch')
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
     authentication_classes = [SessionAuthentication]
-    # permission_classes = [AllowAny]
+
 
     def get_permissions(self):
         if self.request.method == 'POST':
