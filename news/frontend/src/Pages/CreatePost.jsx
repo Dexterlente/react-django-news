@@ -1,5 +1,5 @@
 import requireAuth from '../Contexts/requireAuth'
-import React, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import Cookies from "js-cookie";
 
 const CreatePost = () => {
@@ -19,45 +19,27 @@ const CreatePost = () => {
     setImageUrl(event.target.value);
   };
 
-  // useEffect(() => {
-  //   // Fetch the CSRF token from the backend and set it as a cookie
-  //   fetch('/api/get_csrf_token/', { credentials: 'include' })
-  //     .then(response => {
-  //       const csrftoken = response.headers.get('X-CSRFToken');
-  //       Cookies.set('csrftoken', csrftoken);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching CSRF token:', error);
-  //     });
-  // }, []);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-
-    const sessionid = Cookies.get("sessionid");
-    if (!sessionid) {
-      alert("You must be logged in to create a post.");
-      return;
-    }
-    console.log(sessionid);
     const postData = {
       title,
       content,
       image_url: imageUrl,
     };
+    
 console.log(Cookies.get('csrftoken'));
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${sessionid}`,
-        "Content-Type": "application/json",
-        "X-CSRFToken": Cookies.get('csrftoken'),
-      },
-      body: JSON.stringify(postData),
-      credentials: 'include',
-    };
+const sessionid = Cookies.get("sessionid");
+const requestOptions = {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    Authorization: `Bearer ${sessionid}`,
+    "Content-Type": "application/json",
+    "X-CSRFToken": Cookies.get('csrftoken'),
+  },
+  body: JSON.stringify(postData),
+};
 
     fetch("http://127.0.0.1:8000/api/posts/", requestOptions)
 

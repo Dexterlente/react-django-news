@@ -81,11 +81,12 @@ def register(request):
 class article_list(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
+    permission_classes = [AllowAny]
     
-    def get_permissions(self):
-        if self.request.method == 'POST':
-            return [IsAuthenticated(),]
-        return [AllowAny(),]
+    # def get_permissions(self):
+    #     if self.request.method == 'POST':
+    #         return [IsAuthenticated(),]
+    #     return [AllowAny(),]
 
 
 class article_detail(generics.RetrieveUpdateDestroyAPIView):
@@ -94,17 +95,18 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     permission_classes = [AllowAny]
 
-@method_decorator(csrf_exempt, name='dispatch')
+# @method_decorator(csrf_exempt, name='dispatch')
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
-    authentication_classes = [SessionAuthentication]
+    permission_classes = [AllowAny]
+    # authentication_classes = [SessionAuthentication]
 
 
-    def get_permissions(self):
-        if self.request.method == 'POST':
-            return [IsAuthenticated(),]
-        return [AllowAny(),]
+    # def get_permissions(self):
+    #     if self.request.method == 'POST':
+    #         return [IsAuthenticated(),]
+    #     return [AllowAny(),]
 
 
 class post_detail(generics.RetrieveUpdateDestroyAPIView):

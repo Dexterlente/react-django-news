@@ -76,4 +76,3 @@ class PostSerializer(ModelSerializer):
         model = Post
         fields = '__all__'
 
-        csrf_header_name = 'X-CSRFToken'
