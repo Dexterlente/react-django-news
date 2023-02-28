@@ -16,6 +16,7 @@ const DonationPage = () => {
             <img src={ dexgcash } className='place-items-center' alt='gcash' />
          </div>
          {/* headache my god  feb 27 2023 */}
+         {/* feel so tired and my gout is still here :( */}
          </div>
   )
 }
