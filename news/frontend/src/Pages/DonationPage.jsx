@@ -27,6 +27,12 @@ const DonationPage = () => {
             {/* march 1 2023 still so tired headache */}
             </div>
         </div>
+        {/* mobile device and below */}
+        <div className='block md:hidden'>
+           <div className='text-center'>
+             <p className='font-bold text-[34px]'> Donate To Us </p>
+            </div>
+        </div>
     </div>
   )
 }
