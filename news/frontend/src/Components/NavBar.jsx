@@ -47,8 +47,11 @@ const handleLogout = () => {
 				<Link to={"/articles"} className='mr-4 mt-2 hover:bg-[#C4A484] rounded-md'>
 					Crypto101
 				</Link>
-				<Link to={"/liveprice"} className='mr-10 mt-2 hover:bg-[#C4A484] rounded-md'>
+				<Link to={"/liveprice"} className='mr-4 mt-2 hover:bg-[#C4A484] rounded-md'>
 					Live Prices
+				</Link>
+				<Link to={"/donate"} className='mr-4 mt-2 border-solid border-2 bg-[#FFD700] text-white font-bold border-white px-2 rounded-md hover:opacity-50'>
+					Donate Us
 				</Link>
 				<div className='mr-10 mt-2 hover:bg-[#C4A484] rounded-md'>
 				<LogoutButton onLogout={handleLogout} >Logout</LogoutButton>
@@ -101,6 +104,9 @@ const handleLogout = () => {
 				</Link>
 				<Link to={"/liveprice"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
 					LIVE PRICES
+				</Link>
+				<Link to={"/donate"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
+					DONATE US
 				</Link>
 				
 				<div className='mt-20'>
