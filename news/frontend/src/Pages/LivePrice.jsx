@@ -37,7 +37,8 @@ useEffect(() => {
               ) : (
       <div> 
         {crypto.map((cryptos) => (
-          <div>
+          <div key={cryptos.id}>
+            <p> {cryptos.name} </p>
           </div>
       ))}
       </div> 
