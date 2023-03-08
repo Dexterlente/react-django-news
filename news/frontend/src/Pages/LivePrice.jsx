@@ -35,7 +35,12 @@ useEffect(() => {
     {loading ? (
           <p>Loading...</p>
               ) : (
-      <div>LivePrice</div> 
+      <div> 
+        {posts.map((post) => (
+          <div>
+          </div>
+      ))}
+      </div> 
       )}
     </>
   )
