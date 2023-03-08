@@ -36,7 +36,7 @@ useEffect(() => {
           <p>Loading...</p>
               ) : (
       <div> 
-        {posts.map((post) => (
+        {crypto.map((cryptos) => (
           <div>
           </div>
       ))}
