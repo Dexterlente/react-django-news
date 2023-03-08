@@ -29,6 +29,7 @@ useEffect(() => {
     });
 }, []);
 
+ const now = new Date();
 
   return (
     <>
@@ -36,7 +37,13 @@ useEffect(() => {
           <p>Loading...</p>
               ) : (
       <div className="grid items-center justify-center my-5"> 
-      <div className="border-solid border-4 border-indigo-400">
+      <div className="border-solid border-4 border-gray-700">
+        <div className='text-center text-[36px] font-bold text-white bg-black'>
+          DAILY PRICE UPDATE
+        </div>
+        <div className='text-right bg-black text-white font-bold pr-4 pb-2'>
+                {now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+        </div>
         <div className='max-w-sm grid grid-cols-4 items-center text-center bg-black text-white border-solid border-b-2 border-gray-400'>
         <p className='justify-self-center px-1'></p>
         <p className='justify-self-center px-1'>CRYPTOCURRENCY</p>
@@ -50,7 +57,8 @@ useEffect(() => {
                 <img src={cryptos.image} className='h-[50px] w-[50px] justify-self-center'/>
                 <p className='justify-self-center px-1'>{cryptos.name}</p>
                 <p className='justify-self-center px-1'>{cryptos.current_price}</p>
-                <p className='justify-self-center px-1'>{cryptos.price_change_percentage_24h.toFixed(2)} %</p>
+                <p className={`justify-self-center px-1 ${cryptos.price_change_percentage_24h < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                  {cryptos.price_change_percentage_24h.toFixed(2)} %</p>
               </div>
             ))}
         </div>
