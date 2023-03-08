@@ -35,15 +35,25 @@ useEffect(() => {
     {loading ? (
           <p>Loading...</p>
               ) : (
-      <div className="grid items-center justify-center"> 
-        {crypto.map((cryptos) => (
-          <div key={cryptos.id} className='max-w-sm grid grid-cols-4 items-center'>
-            <img src={ cryptos.image }  className='h-[45px] w-[45px] justify-self-center' />
-            <p className='justify-self-center'> {cryptos.name} </p>
-            <p className='justify-self-center'> {cryptos.current_price} </p>
-            <p className='justify-self-center'> {cryptos.price_change_percentage_24h} </p>
-          </div>
-      ))}
+      <div className="grid items-center justify-center my-5"> 
+      <div className="border-solid border-4 border-indigo-400">
+        <div className='max-w-sm grid grid-cols-4 items-center text-center bg-black text-white border-solid border-b-2 border-gray-400'>
+        <p className='justify-self-center px-1'></p>
+        <p className='justify-self-center px-1'>CRYPTOCURRENCY</p>
+        <p className='justify-self-center px-1'>PRICE</p>
+        <p className='justify-self-center px-1'>24hr CHANGE</p>
+        </div>
+      {crypto.map((cryptos, index) => (
+        <div key={cryptos.id} className={`max-w-sm grid grid-cols-4 border-solid border-b-2 bg-black text-white border-gray-400 items-center p-2 ${
+                index >= crypto.length - 1 ? 'border-b-0' : ''
+              }`}>
+                <img src={cryptos.image} className='h-[50px] w-[50px] justify-self-center'/>
+                <p className='justify-self-center px-1'>{cryptos.name}</p>
+                <p className='justify-self-center px-1'>{cryptos.current_price}</p>
+                <p className='justify-self-center px-1'>{cryptos.price_change_percentage_24h.toFixed(2)} %</p>
+              </div>
+            ))}
+        </div>
       </div> 
       )}
     </>
