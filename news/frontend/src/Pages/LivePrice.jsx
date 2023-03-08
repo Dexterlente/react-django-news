@@ -31,7 +31,13 @@ useEffect(() => {
 
 
   return (
-    <div>LivePrice</div>
+    <>
+    {loading ? (
+          <p>Loading...</p>
+              ) : (
+      <div>LivePrice</div> 
+      )}
+    </>
   )
 }
 
