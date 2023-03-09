@@ -30,7 +30,8 @@ useEffect(() => {
 }, []);
 
  const now = new Date();
-
+ let months = 
+ ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   return (
     <>
     {loading ? (
@@ -41,8 +42,14 @@ useEffect(() => {
         <div className='text-center text-[36px] font-bold text-white bg-black'>
           DAILY PRICE UPDATE
         </div>
+        <p className='text-center text-[14px] bg-black text-white'>via coingecko</p>
         <div className='text-right bg-black text-white font-bold pr-4 pb-2'>
+            <div>
+                {months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
+            </div>
+            <div>
                 {now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+            </div>
         </div>
         <div className='max-w-sm grid grid-cols-4 items-center text-center bg-black text-white border-solid border-b-2 border-gray-400'>
         <p className='justify-self-center px-1'></p>
@@ -54,9 +61,9 @@ useEffect(() => {
         <div key={cryptos.id} className={`max-w-sm grid grid-cols-4 border-solid border-b-2 bg-black text-white border-gray-400 items-center p-2 ${
                 index >= crypto.length - 1 ? 'border-b-0' : ''
               }`}>
-                <img src={cryptos.image} className='h-[50px] w-[50px] justify-self-center'/>
+                <img src={cryptos.image} className='h-[35px] w-[35px] justify-self-center'/>
                 <p className='justify-self-center px-1'>{cryptos.name}</p>
-                <p className='justify-self-center px-1'>{cryptos.current_price}</p>
+                <p className='justify-self-center px-1'>₱{cryptos.current_price.toLocaleString("en-US")}</p>
                 <p className={`justify-self-center px-1 ${cryptos.price_change_percentage_24h < 0 ? 'text-red-500' : 'text-green-500'}`}>
                   {cryptos.price_change_percentage_24h.toFixed(2)} %</p>
               </div>
