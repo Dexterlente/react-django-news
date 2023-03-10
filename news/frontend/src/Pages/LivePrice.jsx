@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 
 
 const LivePrice = () => {
-
+// make new toggle func
   
 const [crypto, setCrypto] = useState([]);
 const [loading, setLoading] = useState(true);
