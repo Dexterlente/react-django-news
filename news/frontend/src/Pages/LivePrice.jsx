@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-
+import LOGO from '../Assets/LOGO.png'
 
 const LivePrice = () => {
 // make new toggle func
@@ -48,20 +48,25 @@ useEffect(() => {
   return (
     <>
       <div className='flex items-center justify-center mt-5'>
-      <button className='border-sold border-2 rounded-full text-white bg-black border-col border-gray-400 p-2 hover:opacity-60 font-bold mr-2' onClick={toggleDiv1}>Cryptocurrencies</button>
-      <button className='border-sold border-2 rounded-full text-white bg-black border-col border-gray-400 p-2 hover:opacity-60 font-bold ml-2' onClick={toggleDiv2}>Gaming Tokens</button>
+      <button className='border-sold border-2 rounded-full text-[#FFD700] bg-black border-col border-gray-400 p-2 hover:opacity-60 font-bold mr-2' onClick={toggleDiv1}>Cryptocurrencies</button>
+      <button className='border-sold border-2 rounded-full text-[#FFD700] bg-black border-col border-gray-400 p-2 hover:opacity-60 font-bold ml-2' onClick={toggleDiv2}>Gaming Tokens</button>
       </div>
       {showDiv1 && (
         <div>
             {loading ? (
                   <p>Loading...</p>
                       ) : (
+                        <div className='relative'>
+
               <div className="grid items-center justify-center my-5"> 
               <div className="border-solid border-4 border-gray-700">
                 <div className='text-center text-[36px] font-bold text-white bg-black'>
                   DAILY PRICE UPDATE
                 </div>
                 <p className='text-center text-[14px] bg-black text-white'>via coingecko</p>
+                <div className='relative bg-black'>
+                <img src={ LOGO } className='ml-4 h-[40px] w-[40px] ' />
+                </div>      
                 <div className='text-right bg-black text-white font-bold pr-4 pb-2'>
                     <div>
                         {months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
@@ -77,7 +82,7 @@ useEffect(() => {
                 <p className='justify-self-center px-1'>24hr CHANGE</p>
                 </div>
               {crypto.map((cryptos, index) => (
-                <div key={cryptos.id} className={`max-w-sm grid grid-cols-4 border-solid border-b-2 bg-black text-white border-gray-400 items-center p-2 ${
+                <div key={cryptos.id} className={`max-w-md grid grid-cols-4 border-solid border-b-2 bg-black text-white border-gray-400 items-center p-2 ${
                         index >= crypto.length - 1 ? 'border-b-0' : ''
                       }`}>
                         <img src={cryptos.image} className='h-[35px] w-[35px] justify-self-center'/>
@@ -89,6 +94,7 @@ useEffect(() => {
                     ))}
                 </div>
               </div> 
+              </div>
               )}
       </div>
       )}
@@ -103,6 +109,9 @@ useEffect(() => {
                   DAILY PRICE UPDATE
                 </div>
                 <p className='text-center text-[14px] bg-black text-white'>via coingecko</p>
+                <div className='relative bg-black'>
+                <img src={ LOGO } className='ml-4 h-[40px] w-[40px] ' />
+                </div>    
                 <div className='text-right bg-black text-white font-bold pr-4 pb-2'>
                     <div>
                         {months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
@@ -113,7 +122,7 @@ useEffect(() => {
                 </div>
                 <div className='max-w-sm grid grid-cols-4 items-center text-center bg-black text-white border-solid border-b-2 border-gray-400'>
                 <p className='justify-self-center px-1'></p>
-                <p className='justify-self-center px-1'>CRYPTOCURRENCY</p>
+                <p className='justify-self-center px-1'>Gaming Token</p>
                 <p className='justify-self-center px-1'>PRICE</p>
                 <p className='justify-self-center px-1'>24hr CHANGE</p>
                 </div>
