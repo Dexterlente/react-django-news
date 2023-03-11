@@ -1,8 +1,12 @@
 import React from 'react'
+// thinking inamo loading
+
 
 const Loading = () => {
+
+  
   return (
-    <div>Loading</div>
+    <div className='h-screen'>Loading</div>
   )
 }
 
