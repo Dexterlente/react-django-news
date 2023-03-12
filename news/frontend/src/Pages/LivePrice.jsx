@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import LOGO from '../Assets/LOGO.png'
+import Loading from '../Components/Loading'
 
 const LivePrice = () => {
 // make new toggle func
@@ -54,7 +55,7 @@ useEffect(() => {
       {showDiv1 && (
         <div>
             {loading ? (
-                  <p>Loading...</p>
+                  <Loading />
                       ) : (
                         <div className='relative'>
 
@@ -101,7 +102,7 @@ useEffect(() => {
       {showDiv2 && (
       <div>
         {loading ? (
-                  <p>Loading...</p>
+                  <Loading />
                       ) : (
               <div className="grid items-center justify-center my-5"> 
               <div className="border-solid border-4 border-gray-700">

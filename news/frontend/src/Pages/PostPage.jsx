@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import Loading from '../Components/Loading'
 
 const PostPage = () => {
   const [post, setPost] =useState([]);
@@ -31,7 +32,7 @@ const PostPage = () => {
   return (
     <div>
             {loading ? (
-                      <p>Loading...</p>
+                      <Loading />
                     ) : (
                       <div>
                         <div className='hidden sm:block mt-28'>

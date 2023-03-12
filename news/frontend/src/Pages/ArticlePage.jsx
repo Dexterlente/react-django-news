@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import Loading from '../Components/Loading'
 
 const ArticlePage = () => {
   const [article, setArticle] =useState([]);
@@ -31,7 +32,7 @@ const ArticlePage = () => {
   return (
     <div>
             {loading ? (
-                      <p>Loading...</p>
+                      <Loading />
                     ) : (
                       <div>
                         <div className='text-center text-[48px] md:text-[68px] font-bold mt-4'> 

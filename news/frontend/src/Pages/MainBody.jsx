@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ScrollToTopButton from '../Components/ScrollToTopButton'
+import Loading from '../Components/Loading'
 
 
 
@@ -41,7 +42,7 @@ const MainBody = () => {
         <div className='grid grid-cols-2 w-screen justify-center ml-4 relative'>
           <div>
           {loading ? (
-          <p>Loading...</p>
+            <Loading />
               ) : (
                     <div>
 
@@ -70,7 +71,7 @@ const MainBody = () => {
 {/* so hard */}
             <div>
                         {articlesLoading ? (
-                                  <p>Loading...</p>
+                                  <Loading />
                                 ) : (
                                   <div>
                                       {articles.map((article) => (
@@ -101,7 +102,7 @@ const MainBody = () => {
             Top Stories
             </div>
                 {loading ? (
-              <p>Loading...</p>
+              <Loading />
                   ) : (
             <div>
                   {posts.map((post) => (
@@ -142,7 +143,7 @@ const MainBody = () => {
             </div>
 
                 {loading ? (
-              <p>Loading...</p>
+              <Loading />
                   ) : (
             <div>
                   {posts.map((post) => (

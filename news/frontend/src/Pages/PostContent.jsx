@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ArchiveButtonPost from '../Components/ArchiveButtonPost'
 import Cookies from 'js-cookie';
+import Loading from '../Components/Loading'
 
 const PostContent = () => {
     const { id } = useParams();
@@ -34,7 +35,7 @@ const PostContent = () => {
     return (
       <div>
         {loading ? (
-          <p>Loading...................</p>
+          <Loading />
         ) : (
           <div className='text-center md:mx-32'>
             <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{PostContent.title_post}</h1>
