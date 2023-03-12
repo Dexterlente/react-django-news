@@ -10,6 +10,7 @@ import PostPage from './Pages/PostPage'
 import About from './Pages/About'
 import LivePrice from './Pages/LivePrice'
 import DonationPage from './Pages/DonationPage'
+import Loading from './Components/Loading'
 
 
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/createpost" element={<CreatePost />} />
                 <Route path="/donate" element={<DonationPage />} />
+                <Route path="/load" element={<Loading />} />
               </Route>
             </Routes>
         </Suspense>
