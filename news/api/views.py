@@ -24,13 +24,6 @@ from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, Art
 from django.middleware.csrf import get_token
 
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
-class GetCSRFToken(APIView):
-    permission_classes = (permissions.AllowAny, )
-
-    def get(self, request, format=None):
-        return Response({ 'success': 'CSRF cookie set' })
-
 
 class LoginAPIView(APIView):
     serializer_class = LoginSerializer
@@ -53,7 +46,7 @@ class LoginAPIView(APIView):
                 return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+# may sakit nanaman
 
 class LogoutView(APIView):
     serializer_class = LogoutSerializer
@@ -81,7 +74,14 @@ def register(request):
 class article_list(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
+    
+    def get_permissions(self):
+        permission_classes = []
+        if self.request.method != 'GET':
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
     
     # def get_permissions(self):
     #     if self.request.method == 'POST':
@@ -99,8 +99,14 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
     # authentication_classes = [SessionAuthentication]
+    def get_permissions(self):
+        permission_classes = []
+        if self.request.method != 'GET':
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
 
 
     # def get_permissions(self):
