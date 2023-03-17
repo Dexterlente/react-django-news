@@ -24,9 +24,9 @@ const PostContent = () => {
   
     useEffect(() => {
       fetchPostContent(id);
-      setSessionID(Cookies.get('sessionid'));
+      setSessionID(Cookies.get('token'));
     }, [id]);
-  
+
     const handleArchiveChange = (id, archived) => {
       setArchived(archived);
     }

@@ -6,17 +6,19 @@ function ArchiveButtonPost({ id, archived_post, onArchiveChange }) {
 
   // Check if user is logged in on component mount
   useEffect(() => {
-    const sessionId = Cookies.get('sessionid');
+    //const sessionId = Cookies.get('sessionid');
+    const token = Cookies.get('token');
     //const sessionToken = sessionStorage.getItem("token");
-    setIsLoggedIn(!!sessionId);
+    setIsLoggedIn(!!token);
   }, []);
 
   // Handle click on archive/unarchive button
   const handleArchiveClick = async () => {
-    const sessionId = Cookies.get('sessionid');
+    const token = Cookies.get('token');
+    //const sessionId = Cookies.get('sessionid');
     //const sessionToken = sessionStorage.getItem("token");
 
-    if (!sessionId) {
+    if (!token) {
       alert("You must be logged in to perform this action.");
       return;
     }
@@ -25,7 +27,7 @@ function ArchiveButtonPost({ id, archived_post, onArchiveChange }) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionId}`,
+        Authorization: `Token ${token}`,
       },
       body: JSON.stringify({ archived_post: !archived_post }),
     });

@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 import uuid
 from django.conf import settings
-from django.utils import timezone
 
 # Create your models here.
 
@@ -82,8 +81,8 @@ class Post(models.Model):
             "author_post": f"{self.author_post.first_name} {self.author_post.last_name}",
         }"""
 
-class Token(models.Model):
-    key = models.CharField(max_length=40, primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='auth_tokens', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    timeout = models.DurationField(default=timezone.timedelta(days=1))
+# class Token(models.Model):
+#     key = models.CharField(max_length=40, primary_key=True)
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='auth_tokens', on_delete=models.CASCADE)
+#     created = models.DateTimeField(auto_now_add=True)
+#     timeout = models.DurationField(default=timezone.timedelta(days=1))

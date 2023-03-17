@@ -157,7 +157,16 @@ class post_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     lookup_field = 'id'
-    permission_classes = [AllowAny]
+    authentication_classes =  [TokenAuthentication] 
+    # permission_classes = [AllowAny]
+    def get_permissions(self):
+        permission_classes = []
+        if self.request.method == 'GET':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
     
 
 @api_view(["GET"])
