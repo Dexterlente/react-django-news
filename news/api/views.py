@@ -131,6 +131,7 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
+    authentication_classes =  [TokenAuthentication] 
 
     def get_permissions(self):
         permission_classes = []

@@ -23,9 +23,9 @@ const CreatePost = () => {
     event.preventDefault();
 
     const postData = {
-      title,
-      content,
-      image_url: imageUrl,
+      title_post: title,
+      content_post: content,
+      image_post: imageUrl
     };
     
 console.log(Cookies.get('csrftoken'));
@@ -37,7 +37,7 @@ const requestOptions = {
   headers: {
     // Accept: "application/json",
     "Content-Type": "application/json",
-    'Authorization': `Bearer ${token}`,
+    'Authorization': `Token ${token}`,
      "X-CSRFToken": csrftoken,
   },
   body: JSON.stringify(postData),
