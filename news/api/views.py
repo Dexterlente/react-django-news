@@ -131,15 +131,16 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
 class post_list(generics.ListCreateAPIView):
     queryset = Post.objects.all().order_by('-time_created_post')
     serializer_class = PostSerializer
-    # permission_classes = [AllowAny]
-    # authentication_classes = [SessionAuthentication]
+
     def get_permissions(self):
         permission_classes = []
         if self.request.method != 'GET':
             permission_classes = [IsAuthenticated]
 
         return [permission() for permission in permission_classes]
-
+        
+    # permission_classes = [AllowAny]
+    # authentication_classes = [SessionAuthentication]
 
     # def get_permissions(self):
     #     if self.request.method == 'POST':
