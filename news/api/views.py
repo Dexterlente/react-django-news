@@ -135,7 +135,11 @@ class post_list(generics.ListCreateAPIView):
 
     def get_permissions(self):
         permission_classes = []
-        if self.request.method != 'GET':
+        # if self.request.method != 'GET':
+        #     permission_classes = [IsAuthenticated]
+        if self.request.method == 'GET':
+            permission_classes = [AllowAny]
+        else:
             permission_classes = [IsAuthenticated]
 
         return [permission() for permission in permission_classes]
