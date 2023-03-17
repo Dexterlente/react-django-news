@@ -29,14 +29,16 @@ const CreatePost = () => {
     };
     
 console.log(Cookies.get('csrftoken'));
-const sessionid = Cookies.get("sessionid");
+const csrftoken = Cookies.get("csrftoken");
+//const sessionid = Cookies.get("sessionid");
+//const token = Cookies.get('token');
 const requestOptions = {
   method: "POST",
   headers: {
-    Accept: "application/json",
-    Authorization: `Bearer ${sessionid}`,
-    "Content-Type": "application/json",
-    "X-CSRFToken": Cookies.get('csrftoken'),
+    // Accept: "application/json",
+    // Authorization: `Bearer ${token}`,
+     "Content-Type": "application/json",
+    // "X-CSRFToken": csrftoken,
   },
   body: JSON.stringify(postData),
 };

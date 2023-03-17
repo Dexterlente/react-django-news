@@ -77,3 +77,6 @@ class PostSerializer(ModelSerializer):
         model = Post
         fields = '__all__'
 
+    def create(self, validated_data):
+        validated_data['author_post'] = self.context['request'].user
+        return super().create(validated_data)
