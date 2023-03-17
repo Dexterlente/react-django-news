@@ -1,8 +1,10 @@
 import requireAuth from '../Contexts/requireAuth'
 import React, { useState, } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom'
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -52,6 +54,7 @@ const requestOptions = {
         setTitle("");
         setContent("");
         setImageUrl("");
+        navigate("/");
       })
       .catch((error) => console.error(error));
   };
