@@ -6,8 +6,9 @@ function LogoutButton({ onLogout }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const sessionId = Cookies.get('sessionid');
-    if (sessionId) {
+   // const sessionId = Cookies.get('sessionid');
+    const token = Cookies.get('token');
+    if (token) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
@@ -16,7 +17,8 @@ function LogoutButton({ onLogout }) {
 
 
   const handleLogout = () => {
-  const sessionId = Cookies.get('sessionid');
+  // const sessionId = Cookies.get('sessionid');
+  const token = Cookies.get('token');
   const csrfToken = Cookies.get('csrftoken');
 
     fetch('http://127.0.0.1:8000/api/logout/', {
@@ -25,11 +27,11 @@ function LogoutButton({ onLogout }) {
         'Content-Type': 'application/json',
         // Authorization: `Bearer ${sessionId}`,
         'X-CSRFToken': csrfToken,
+        Authorization: `Token ${token}`
       },
-      body: JSON.stringify({ sessionid: sessionId }),
     })
       .then(() => {
-        Cookies.remove('sessionid');
+        Cookies.remove('token');
         setIsLoggedIn(false);
         onLogout();
       })

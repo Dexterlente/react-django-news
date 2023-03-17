@@ -6,8 +6,9 @@ function withAuth(WrappedComponent) {
   return function(props) {
     const navigate = useNavigate();
     useEffect(() => {
-      const sessionid = Cookies.get('sessionid');
-      if (sessionid) {
+      //const sessionid = Cookies.get('sessionid');
+      const token = Cookies.get('token');
+      if (token) {
         // User is authenticated, redirect to a different page
         navigate('/');
       }

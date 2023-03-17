@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework import status
+
 from django.contrib.auth import authenticate, logout, login
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
@@ -15,50 +15,82 @@ from rest_framework import generics, status, serializers
 from rest_framework.request import Request as DRFRequest
 from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
-from rest_framework.authentication import SessionAuthentication
+# from rest_framework.authentication import SessionAuthentication
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.contrib.sessions.models import Session
 #from rest_framework.permissions import BasePermission
 
 from .serializers import UserSerializer, LoginSerializer, ProfileSerializer, ArticleSerializer, PostSerializer, LogoutSerializer
 from django.middleware.csrf import get_token
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authentication import TokenAuthentication
 
 
 
-class LoginAPIView(APIView):
-    serializer_class = LoginSerializer
 
+# class LoginAPIView(APIView):
+#     serializer_class = LoginSerializer
+
+#     def post(self, request):
+#         if request.user.is_authenticated:
+#             return Response({'error': 'User is already authenticated.'}, status=status.HTTP_400_BAD_REQUEST)
+
+#         serializer = self.serializer_class(data=request.data)
+#         if serializer.is_valid():
+#             username = serializer.data['username']
+#             password = serializer.data['password']
+#             user = authenticate(request, username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 sessionid = request.session.session_key  # get session key
+#                 get_token(request)
+#                 return Response({'sessionid': sessionid, 'success': 'Logged in successfully'})
+#             else:
+#                 return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# # may sakit nanaman
+# class LogoutView(APIView):
+#     serializer_class = LogoutSerializer
+#     authentication_classes = [SessionAuthentication]
+
+#     def post(self, request, format=None):
+#         session_id = request.data.get('sessionid')
+#         if session_id:
+#             Session.objects.filter(session_key=session_id).delete()
+#             logout(request)
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+# @api_view(["POST"])
+# @permission_classes([AllowAny])
+# def register(request):
+#     serializer = UserSerializer(data=request.data)
+#     if serializer.is_valid():
+#         user = serializer.save()
+#         token = Token.objects.create(user=user)
+#         return Response({'message': 'Successfully registered', 'token': token.key})
+#     else:
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LoginAPIView(ObtainAuthToken):
     def post(self, request):
         if request.user.is_authenticated:
             return Response({'error': 'User is already authenticated.'}, status=status.HTTP_400_BAD_REQUEST)
-
+        
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            username = serializer.data['username']
-            password = serializer.data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                sessionid = request.session.session_key  # get session key
-                get_token(request)
-                return Response({'sessionid': sessionid, 'success': 'Logged in successfully'})
-            else:
-                return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+            user = serializer.validated_data['user']
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key, 'success': 'Logged in successfully'})
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-# may sakit nanaman
+            return Response({'error': 'Invalid login credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class LogoutView(APIView):
-    serializer_class = LogoutSerializer
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
-        session_id = request.data.get('sessionid')
-        if session_id:
-            Session.objects.filter(session_key=session_id).delete()
-            logout(request)
+        request.user.auth_token.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 @api_view(["POST"])
 @permission_classes([AllowAny])

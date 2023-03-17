@@ -26,7 +26,10 @@ function Login() {
         if (data.success) {
           // Successful login logic here
           Cookies.set("csrftoken", data.csrftoken);
-          Cookies.set('sessionid', data.sessionid); // Save session ID in a cookie
+          Cookies.set('token', data.token);
+          // Cookies.set('access_token', data.access); // Save access token in a cookie
+          // Cookies.set('refresh_token', data.refresh); // Save refresh token in a cookie
+         // Cookies.set('sessionid', data.sessionid); // Save session ID in a cookie
           window.location.reload(true); // hard refresh to render the logout button
           navigate('/'); // Redirect to dashboard page
           
