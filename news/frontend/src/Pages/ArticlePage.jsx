@@ -10,7 +10,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const articlesPerPage = 2;
+  const articlesPerPage = 10;
   const pageCount = Math.ceil(article.length / articlesPerPage);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const ArticlePage = () => {
                         </div>
                         <div className='hidden sm:block mt-8'>
                           {currentArticles    //filter archived false
-                           .filter(article => !article.archived)
+                          //  .filter(article => article.archived)
                            .map((article, index) => (
                           <div key={article.id} className={`grid grid-cols-2 border-b-2 pb-4 content-center border-[#795C34] my-10 ${
                             index === currentArticles.length - 1 ? 'border-b-0' : ''
@@ -62,7 +62,7 @@ const ArticlePage = () => {
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
+                              <img className='h-[150px] w-[300px]' src={ article.image } alt='article' />
                           </div>
                           
                           ))}
@@ -92,7 +92,7 @@ const ArticlePage = () => {
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px]' src={ article.image } alt='Image' />
+                              <img className='h-[150px] w-[300px]' src={ article.image } alt='article' />
                           </div>
                           
                           ))}

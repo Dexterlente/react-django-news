@@ -10,7 +10,7 @@ const PostPage = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const postPerPage = 2;
+  const postPerPage = 10;
   const pageCount = Math.ceil(post.length / postPerPage);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const PostPage = () => {
                       <div>
                         <div className='hidden sm:block mt-28'>
                           {currentPost    //filter archived false
-                           .filter(post => !post.archived)
+                           .filter(post => post.archived_post)
                            .map((post, index) => (
                           <div key={post.id} className={`grid grid-cols-2 content-center pb-4 border-b-2  border-[#795C34] my-10 ${
                             index === currentPost.length - 1 ? 'border-b-0' : ''
@@ -59,7 +59,7 @@ const PostPage = () => {
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px]' src={ post.image_post } alt='Image' />
+                              <img className='h-[150px] w-[300px]' src={ post.image_post } alt='post' />
                           
                           </div>
                           
@@ -89,7 +89,7 @@ const PostPage = () => {
                                       </h1>
                                     </div>
                                     </Link>
-                              <img className='h-[150px] w-[300px]' src={ post.image_post } alt='Image' />
+                              <img className='h-[150px] w-[300px]' src={ post.image_post } alt='post' />
                           </div>
                           
                           ))}

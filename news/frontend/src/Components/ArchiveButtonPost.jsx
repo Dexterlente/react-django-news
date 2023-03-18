@@ -40,6 +40,8 @@ function ArchiveButtonPost({ id, archived_post, onArchiveChange }) {
   };
 
   return (
+    <>
+    {isLoggedIn && 
     <button onClick={handleArchiveClick}
     className={`py-2 mb-10 px-4 font-semibold rounded-lg shadow-md text-white hover:opacity-70 ${
       archived_post ? "bg-[red]" : "bg-[green]"
@@ -47,7 +49,10 @@ function ArchiveButtonPost({ id, archived_post, onArchiveChange }) {
     >
       {archived_post ? "Unarchive" : "Archive"}
     </button>
+    }
+    </>
   );
 }
+
 
 export default ArchiveButtonPost;

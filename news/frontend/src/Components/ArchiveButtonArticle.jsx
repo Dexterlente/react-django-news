@@ -40,6 +40,8 @@ function ArchiveButtonArticle({ id, archived, onArchiveChange }) {
   };
 
   return (
+    <>
+    {isLoggedIn && 
     <button onClick={handleArchiveClick}
     className={`py-2 mb-10 px-4 font-semibold rounded-lg shadow-md text-white hover:opacity-70 ${
       archived ? "bg-[red]" : "bg-[green]"
@@ -47,6 +49,8 @@ function ArchiveButtonArticle({ id, archived, onArchiveChange }) {
     >
       {archived ? "Unarchive" : "Archive"}
     </button>
+    }
+    </>
   );
 }
 
