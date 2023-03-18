@@ -106,11 +106,13 @@ def register(request):
 class article_list(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-time_created')
     serializer_class = ArticleSerializer
-    # permission_classes = [AllowAny]
+    authentication_classes =  [TokenAuthentication] 
     
     def get_permissions(self):
         permission_classes = []
-        if self.request.method != 'GET':
+        if self.request.method == 'GET':
+            permission_classes = [AllowAny]
+        else:
             permission_classes = [IsAuthenticated]
 
         return [permission() for permission in permission_classes]
@@ -125,7 +127,17 @@ class article_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = 'id'
-    permission_classes = [AllowAny]
+    authentication_classes =  [TokenAuthentication] 
+
+    def get_permissions(self):
+        permission_classes = []
+        if self.request.method == 'GET':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
+    
 
 # @method_decorator(csrf_exempt, name='dispatch')
 class post_list(generics.ListCreateAPIView):
