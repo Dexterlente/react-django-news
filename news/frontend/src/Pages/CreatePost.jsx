@@ -60,25 +60,27 @@ const requestOptions = {
   };
 
   return (
-    <div>
-      <h2>Create a new post</h2>
+    <div className='mx-3 font-bold'>
+      <h2 className='text-[32px] my-8'>Create a new post</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Title:
-          <input type="text" value={title} onChange={handleTitleChange} />
+          <input type="text" value={title} onChange={handleTitleChange} className='w-11/12 mx-3 mb-4 border-2 border-gray-600 border-solid rounded-md' />
         </label>
         <br />
         <label>
+          <div>
           Content:
-          <textarea value={content} onChange={handleContentChange} />
+          </div>
+          <textarea value={content} onChange={handleContentChange} className='w-11/12 h-[300px] mx-3 border-2 my-1 border-solid border-gray-600 rounded-md' />
         </label>
         <br />
         <label>
           Image URL:
-          <input type="url" value={imageUrl} onChange={handleImageUrlChange} />
+          <input type="url" value={imageUrl} onChange={handleImageUrlChange} className='w-11/12 mx-3 mb-4 border-2 border-gray-600  border-solid rounded-md mt-3' />
         </label>
         <br />
-        <button type="submit">Create post</button>
+        <button type="submit" className="inline-block px-6 mr-18 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-full hover:bg-yellow-500 hover:text-white focus:outline-none focus:ring-0 transition duration-150 ease-in-out mb-3" >Create Post</button>
       </form>
     </div>
   );
