@@ -18,6 +18,8 @@ const PostContent = lazy(() =>  import('./Pages/PostContent'));
 const ArticleContent = lazy(() =>  import('./Pages/ArticleContent'));
 const RegisterForm = lazy(() =>  import('./Pages/RegisterForm'));
 const CreatePost = lazy(() => import('./Pages/CreatePost'));
+const CreateArticle = lazy(() => import('./Pages/CreateArticle'));
+const EditPost = lazy(() => import('./Pages/EditPost'));
 
 function App() {
   const NavAndFooter = () => {
@@ -46,6 +48,8 @@ function App() {
                 <Route path="/registration" element={<RegisterForm />} />        
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/createpost" element={<CreatePost />} />
+                <Route path="/createarticle" element={<CreateArticle />} />
+                <Route path="/edit-post/:id" element={<EditPost />} />
                 <Route path="/donate" element={<DonationPage />} />
                 <Route path="/load" element={<Loading />} />
               </Route>

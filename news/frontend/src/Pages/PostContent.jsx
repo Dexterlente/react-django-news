@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ArchiveButtonPost from '../Components/ArchiveButtonPost'
 import Cookies from 'js-cookie';
 import Loading from '../Components/Loading'
@@ -51,11 +51,16 @@ const PostContent = () => {
           </p>
             <p className='text-[16px] md:m-24 m-8'>{PostContent.content_post}</p>
             {sessionID && (
+              <>
             <ArchiveButtonPost
               id={id}
               archived_post={archived}
               onArchiveChange={handleArchiveChange}
-              />
+              />  
+            <Link to={`/edit-post/${id}`} className="py-2 mb-10 px-4 font-semibold rounded-lg shadow-md text-black hover:opacity-70">
+              Edit Post
+            </Link>   
+              </>      
             )}
           </div>
         )}

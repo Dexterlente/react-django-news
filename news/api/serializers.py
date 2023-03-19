@@ -70,6 +70,10 @@ class ArticleSerializer(ModelSerializer):
         model = Article
         fields = '__all__'
 
+    def create(self, validated_data):
+        validated_data['author'] = self.context['request'].user
+        return super().create(validated_data)
+
 class PostSerializer(ModelSerializer):
     author_post = UserSerializer(read_only=True)
 
