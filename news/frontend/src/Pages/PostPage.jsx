@@ -36,7 +36,7 @@ const PostPage = () => {
                     ) : (
                       <div>
                         <div className='hidden sm:block mt-28'>
-                          {currentPost    //filter archived false
+                          {currentPost    //filter archived true
                            .filter(post => post.archived_post)
                            .map((post, index) => (
                           <div key={post.id} className={`grid grid-cols-2 content-center pb-4 border-b-2  border-[#795C34] my-10 ${
