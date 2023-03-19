@@ -8,6 +8,7 @@ const CreateArticle = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [, setSetError] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -23,6 +24,12 @@ const CreateArticle = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+  // Validation
+  if (!title || !content || !imageUrl) {
+    setSetError(true);
+    return;
+  }
 
     const postData = {
       title: title,
@@ -32,7 +39,6 @@ const CreateArticle = () => {
     
 console.log(Cookies.get('csrftoken'));
 const csrftoken = Cookies.get("csrftoken");
-//const sessionid = Cookies.get("sessionid");
 const token = Cookies.get('token');
 const requestOptions = {
   method: "POST",
@@ -53,10 +59,15 @@ const requestOptions = {
         console.log("New article created:", data);
         setTitle("");
         setContent("");
-        setImageUrl("");
+        setImageUrl("");   
+        setSetError(false); // Set error to false on success
         navigate("/");
-      })
-      .catch((error) => console.error(error));
+      })  
+      .catch((error) => {
+        console.error(error);
+        setSetError(true);
+      });
+      
   };
 
   return (

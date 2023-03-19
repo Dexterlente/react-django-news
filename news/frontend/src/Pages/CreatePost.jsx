@@ -8,6 +8,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [, setSetError] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -23,6 +24,12 @@ const CreatePost = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+  // Validation
+  if (!title || !content || !imageUrl) {
+    setSetError(true);
+    return;
+  }
 
     const postData = {
       title_post: title,
@@ -54,9 +61,13 @@ const requestOptions = {
         setTitle("");
         setContent("");
         setImageUrl("");
+        setSetError(false); // Set error to false on success
         navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setSetError(true);
+      });
   };
 
   return (
