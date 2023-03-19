@@ -7,10 +7,12 @@ from django.conf import settings
 # Create your models here.
 
 class User (AbstractUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
 
 class Profile(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.CharField(max_length=1000)
     profile_content = models.TextField()
@@ -32,7 +34,7 @@ class Profile(models.Model):
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=120)
     content = models.TextField()
     image = models.CharField(max_length=1000)
     time_created = models.DateTimeField(auto_now_add=True)
@@ -60,7 +62,7 @@ class Article(models.Model):
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    title_post = models.CharField(max_length=60)
+    title_post = models.CharField(max_length=120)
     content_post = models.TextField()
     image_post = models.CharField(max_length=1000)
     time_created_post = models.DateTimeField(auto_now_add=True)

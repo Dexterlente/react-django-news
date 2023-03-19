@@ -156,3 +156,20 @@ def profile(request):
         return Response(ProfileSerializer(profile).data)
     except Profile.DoesNotExist:
         return Response({'error': 'Profile does not exist'}, status=status.HTTP_404_NOT_FOUND)
+    
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# @authentication_classes([TokenAuthentication])
+# def get_user(request):
+#     user = request.user
+#     serializer = UserSerializer(user)
+#     return Response(serializer.data)
+    
+class UserView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
