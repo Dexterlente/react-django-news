@@ -93,7 +93,7 @@ const PostPage = () => {
                           </div>
                           
                           ))}
-
+    {/* dynamic endpoints of django http://127.0.0.1:8000/api/posts/?page=1 */}
                           </div>
                           <ReactPaginate
                             breakLabel={<span className="mr-4">...</span>}
