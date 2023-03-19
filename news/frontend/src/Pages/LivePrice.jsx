@@ -66,7 +66,8 @@ useEffect(() => {
                 </div>
                 <p className='text-center text-[14px] bg-black text-white'>via coingecko</p>
                 <div className='relative bg-black'>
-                <img src={ LOGO } className='ml-4 h-[40px] w-[40px] ' />
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <img src={ LOGO } className='ml-4 h-[40px] w-[40px]' /> 
                 </div>      
                 <div className='text-right bg-black text-white font-bold pr-4 pb-2'>
                     <div>
@@ -86,6 +87,7 @@ useEffect(() => {
                 <div key={cryptos.id} className={`max-w-md grid grid-cols-4 border-solid border-b-2 bg-black text-white border-gray-400 items-center p-2 ${
                         index >= crypto.length - 1 ? 'border-b-0' : ''
                       }`}>
+                         {/* eslint-disable-next-line jsx-a11y/alt-text */}
                         <img src={cryptos.image} className='h-[35px] w-[35px] justify-self-center'/>
                         <p className='justify-self-center px-1'>{cryptos.name}</p>
                         <p className='justify-self-center px-1'>₱{cryptos.current_price.toLocaleString("en-US")}</p>
@@ -101,7 +103,7 @@ useEffect(() => {
       )}
       {showDiv2 && (
       <div>
-        {loading ? (
+        {loadingt ? (
                   <Loading />
                       ) : (
               <div className="grid items-center justify-center my-5"> 
@@ -111,6 +113,7 @@ useEffect(() => {
                 </div>
                 <p className='text-center text-[14px] bg-black text-white'>via coingecko</p>
                 <div className='relative bg-black'>
+                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
                 <img src={ LOGO } className='ml-4 h-[40px] w-[40px] ' />
                 </div>    
                 <div className='text-right bg-black text-white font-bold pr-4 pb-2'>
@@ -131,6 +134,7 @@ useEffect(() => {
                 <div key={cryptos.id} className={`max-w-sm grid grid-cols-4 border-solid border-b-2 bg-black text-white border-gray-400 items-center p-2 ${
                         index >= crypto.length - 1 ? 'border-b-0' : ''
                       }`}>
+                        {/* eslint-disable-next-line jsx-a11y/alt-text */}
                         <img src={cryptos.image} className='h-[35px] w-[35px] justify-self-center bg-white'/>
                         <p className='justify-self-center px-1'>{cryptos.name}</p>
                         <p className='justify-self-center px-1'>₱{cryptos.current_price.toLocaleString("en-US")}</p>

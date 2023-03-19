@@ -30,8 +30,7 @@ const PostContent = () => {
     const handleArchiveChange = (id, archived) => {
       setArchived(archived);
     }
-
-
+    
     return (
       <div>
         {loading ? (

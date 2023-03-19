@@ -56,7 +56,7 @@ const MainBody = () => {
                                   </p>
                               </div>
                               </Link>
-                            <img className='h-[150px] w-[300px] pr-2' src={ post.image_post } alt='Image' />
+                            <img className='h-[150px] w-[300px] pr-2' src={ post.image_post } alt='Post' />
                         </div>
                         ))}
                     </div>
@@ -84,7 +84,7 @@ const MainBody = () => {
                                                 </p>
                                             </div>
                                             </Link>
-                                          <img className='h-[150px] w-[300px] mr-4' src={ article.image } alt='Image' />
+                                          <img className='h-[150px] w-[300px] mr-4' src={ article.image } alt='Article' />
                                       </div>
                                       ))}
                                   </div>
@@ -118,7 +118,7 @@ const MainBody = () => {
                     </div>
               </Link>
                 <div className='h-[300px] w-[400px] mr-24'>
-                    <img src={ post.image_post } className='align-middle' alt='image' />
+                    <img src={ post.image_post } className='align-middle' alt='Post' />
                 </div>
           </div>
           ))}
@@ -159,7 +159,7 @@ const MainBody = () => {
                       </div>
               </Link>
               <div className='h-[280px] w-[380px]'>
-              <img src={ post.image_post } className='align-middle' alt='image' />
+              <img src={ post.image_post } className='align-middle' alt='Post' />
               </div>
           </div>
             ))}
