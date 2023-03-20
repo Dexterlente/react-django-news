@@ -75,7 +75,7 @@ const PostPage = () => {
                                       <h1 className='font-bold text-2xl hover:opacity-60 mr-2 content-center'>{post.title_post}
                                       <br/>
                                         <p className='mt-4 text-sm'>
-                                            By: {post.author_post.first_name} {post.author_post.last_name}
+                                            By: {post.author_post.first_name.charAt(0).toUpperCase() + post.author_post.first_name.slice(1).toLowerCase() } {post.author_post.last_name.charAt(0).toUpperCase()+ post.author_post.last_name.slice(1).toLowerCase()}
                                         </p>
                                         <p className='mt-4 text-sm'>
                                         {new Date(post.time_created_post).toLocaleDateString("en-US", {

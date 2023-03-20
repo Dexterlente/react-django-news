@@ -74,7 +74,7 @@ const ArticlePage = () => {
                                       <h1 className='font-bold text-2xl hover:opacity-60 mr-10 content-center'>{article.title}
                                       <br/>
                                         <p className='mt-4 text-sm'>
-                                            By: {article.author.first_name} {article.author.last_name}
+                                            By: {article.author.first_name.charAt(0).toUpperCase() + article.author.first_name.slice(1).toLowerCase() } {article.author.last_name.charAt(0).toUpperCase()+ article.author.last_name.slice(1).toLowerCase()}
                                         </p>
                                         <p className='mt-4 text-sm'>
                                         {new Date(article.time_created).toLocaleDateString("en-US", {

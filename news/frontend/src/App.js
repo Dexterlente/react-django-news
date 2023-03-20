@@ -37,7 +37,7 @@ function App() {
   
   return (
     <div className='overflow-hidden'>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div><Loading /></div>}>
             <Routes>
               <Route path="/" element={<NavAndFooter />}>
                 <Route path="/" element={<Cover />} />
@@ -48,8 +48,8 @@ function App() {
                 <Route path="/articles/:id" element={<ArticleContent />} /> 
                 <Route path="/postpage" element={<PostPage />} />     
                 <Route path="/about" element={<About />} />       
-                <Route path="/registration" element={<RegisterForm />} />        
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="/graceimperiolente" element={<RegisterForm />} />        
+                <Route path="/loggers" element={<LoginPage />} />
                 <Route path="/createpost" element={<CreatePost />} />
                 <Route path="/createarticle" element={<CreateArticle />} />
                 <Route path="/edit-post/:id" element={<EditPost />} />
