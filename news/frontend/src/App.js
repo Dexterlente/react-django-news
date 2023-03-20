@@ -11,6 +11,7 @@ import About from './Pages/About'
 import LivePrice from './Pages/LivePrice'
 import DonationPage from './Pages/DonationPage'
 import Loading from './Components/Loading'
+import PageNotFound from './Pages/PageNotFound'
 
 
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/edit-post/:id" element={<EditPost />} />
                 <Route path="/donate" element={<DonationPage />} />
                 <Route path="/load" element={<Loading />} />
+                <Route path="*" element={<PageNotFound />} />
               </Route>
             </Routes>
         </Suspense>

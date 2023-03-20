@@ -2,7 +2,7 @@ import React from 'react'
 
 const PageNotFound = () => {
   return (
-    <div>PageNotFound</div>
+    <div className='h-screen align-center justify-center content-center'>PageNotFound</div>
   )
 }
 
