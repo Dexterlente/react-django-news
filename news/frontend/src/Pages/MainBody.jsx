@@ -13,24 +13,58 @@ const MainBody = () => {
   const [articlesLoading, setArticlesLoading] = useState(true);
 
 
+  // useEffect(() => {
+  //   fetch('http://127.0.0.1:8000/api/posts/?page=1')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setPosts(data.result);
+  //       console.log(setPosts);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/posts/")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
+    const fetchData = async () => {
+      try {
+        const result = await fetch(`http://127.0.0.1:8000/api/posts/?page=1`);
+        const data = await result.json();
+        console.log(data);
+        setPosts(data.results);
         setLoading(false);
-      });
+      }catch (error) {
+        console.log(error);
+        setLoading(true);
+      }    
+    };
+    fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   fetch('http://127.0.0.1:8000/api/articles/?page=1')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setArticles(data.result);
+  //       console.log(setArticles);
+  //       setArticlesLoading(false);
+  //     });
+  // }, []);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/articles/")
-      .then((res) => res.json())
-      .then((data) => {
-        setArticles(data);
+    const fetchDatas = async () => {
+      try {
+        const result = await fetch(`http://127.0.0.1:8000/api/articles/?page=1`);
+        const data = await result.json();
+        console.log(data);
+        setArticles(data.results);
         setArticlesLoading(false);
-      });
+      }catch (error) {
+        console.log(error);
+        setArticlesLoading(true);
+      }    
+    };
+    fetchDatas();
   }, []);
-
 
   return (
     <div>

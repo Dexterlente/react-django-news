@@ -6,28 +6,56 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Loading from '../Components/Loading'
 
 const PostPage = () => {
-  const [post, setPost] =useState([]);
+  const [data, setData] =useState([]);
   const [loading, setLoading] = useState(true);
+  const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const postPerPage = 10;
-  const pageCount = Math.ceil(post.length / postPerPage);
+  // const postPerPage = 10;
+  // const pageCount = Math.ceil(post.length / postPerPage);
 
-    useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/posts/")
-      .then((res) => res.json())
-      .then((data) => {
-        setPost(data);
+  //   useEffect(() => {
+  //   fetch(`http://127.0.0.1:8000/api/posts/?page=${currentPage + 1}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setPost(data);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await fetch(`http://127.0.0.1:8000/api/posts/?page=${currentPage + 1}`);
+        const data = await result.json();
+        console.log(data);
+        setData(data.results);
+        setPageCount(Math.ceil(data.count / 10));
+        console.log(setPageCount);
         setLoading(false);
-      });
-  }, []);
+      }catch (error) {
+        console.log(error);
+        setLoading(true);
+      }    
+    };
+    fetchData();
+  }, [currentPage]);
 
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
+  // const handlePageChange = ({ selected }) => {
+  //   setCurrentPage(selected);
+  // };
+
+  const handlePageChange = (data) => {
+    const selectedPage = data.selected;
+    // Check if the requested page exists before making the API request
+      if (selectedPage < pageCount) {
+        console.log(pageCount);
+        setCurrentPage(data.selected);
+    }
   };
 
-  const offset = currentPage * postPerPage;
-  const currentPost = post.slice(offset, offset + postPerPage);
+  // const offset = currentPage * postPerPage;
+  // const currentPost = post.slice(offset, offset + postPerPage);
 
   return (
     <div>
@@ -36,11 +64,11 @@ const PostPage = () => {
                     ) : (
                       <div>
                         <div className='hidden sm:block mt-28'>
-                          {currentPost    //filter archived true
+                          {data    //filter archived true
                            .filter(post => post.archived_post)
                            .map((post, index) => (
                           <div key={post.id} className={`grid grid-cols-2 content-center pb-4 border-b-2  border-[#795C34] my-10 ${
-                            index === currentPost.length - 1 ? 'border-b-0' : ''
+                            index === data.length - 1 ? 'border-b-0' : ''
                           }`}> 
                                 <Link to={`/post/${post.id}`}>
                                     <div className='ml-28'>
@@ -66,11 +94,11 @@ const PostPage = () => {
                           ))}
                           </div>
                           <div className='block sm:hidden mt-28'>
-                          {currentPost    //filter archived false
+                          {data    //filter archived false
                            .filter(post => !post.archived)
                            .map((post, index) => (
                           <div key={post.id} className={`flex-row border-b-2 pb-4 ml-6 content-center border-[#795C34] my-10 ${
-                            index === currentPost.length - 1 ? 'border-b-0' : ''
+                            index === data.length - 1 ? 'border-b-0' : ''
                           }`}> 
                                 <Link to={`/post/${post.id}`}>
                                     <div>
