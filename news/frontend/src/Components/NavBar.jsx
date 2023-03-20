@@ -5,6 +5,7 @@ import DailyWhite from '../Assets/DailyWhite.png'
 import { AiOutlineClose, AiOutlineMenu, AiOutlineCopyrightCircle } from "react-icons/ai";
 import { Link, useNavigate } from 'react-router-dom'
 import LogoutButton from './LogoutButton'
+import { FaHome } from 'react-icons/fa'
 
 
 
@@ -57,10 +58,12 @@ const handleLogout = () => {
 				<LogoutButton onLogout={handleLogout} >Logout</LogoutButton>
 				</div>
 			</div>
-			<div className='p-2'>
-				<div className='pl-10'>
+			<div className='p-2 flex font-bold'>
+			<div className='hover:opacity-30 pt-1 ml-2'><FaHome /></div>
+				<div className='pl-3'>
 				{dayNames[now.getDay()]},{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -73,7 +76,7 @@ const handleLogout = () => {
 			</div>
 			<div className='relative'>
 			<div className='font-bold bg-[#F4F0DB] sm:hidden pt-2 border-double border-b-4 border-black flex'>
-	
+			<div className='hover:opacity-30 pt-1 ml-2'><FaHome /></div>
 				<div className='pl-2 mb-2'>
 					{months[now.getMonth()]} {now.getDate()}, {now.getFullYear()}
 				</div>
