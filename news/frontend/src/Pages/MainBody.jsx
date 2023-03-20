@@ -11,7 +11,7 @@ const MainBody = () => {
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
   const [articlesLoading, setArticlesLoading] = useState(true);
-
+//archive true must be removed here
 
   // useEffect(() => {
   //   fetch('http://127.0.0.1:8000/api/posts/?page=1')
@@ -80,13 +80,16 @@ const MainBody = () => {
               ) : (
                     <div>
 
-                        {posts.map((post) => (
+                        {posts
+                        // archive false only
+                        .filter(post => !post.archived_post)
+                        .map((post) => (
                           <div key={post.id} className='border-b-2 border-[#795C34] last:border-b-0 border-r-2 mb-4 pb-4 grid grid-cols-2'> 
                                     <Link to={`/post/${post.id}`}>
                             <div className='ml-8'>
                               <h1 className='font-bold text-xl hover:opacity-60'>{post.title_post}</h1>
                               <p className='mt-4 text-sm'>
-                                By: {post.author_post.first_name} {post.author_post.last_name}
+                                By: {post.author_post.first_name.charAt(0).toUpperCase() + post.author_post.first_name.slice(1).toLowerCase()} {post.author_post.last_name.charAt(0).toUpperCase()+ post.author_post.last_name.slice(1).toLowerCase()}
                                   </p>
                               </div>
                               </Link>
@@ -108,13 +111,15 @@ const MainBody = () => {
                                   <Loading />
                                 ) : (
                                   <div>
-                                      {articles.map((article) => (
+                                      {articles
+                                      .sort((a, b) => new Date(a.time_created) - new Date(b.time_created))
+                                      .map((article) => (
                                         <div key={article.id} className='grid grid-cols-2 border-b-2 last:border-b-0 ml-10 border-[#795C34] mb-4 pb-4'> 
                                         <Link to={`/articles/${article.id}`}>
                                             <div>
                                             <h1 className='font-bold text-xl mr-6 hover:opacity-60'>{article.title}</h1>
                                             <p className='mt-4 text-sm'>
-                                              By: {article.author.first_name} {article.author.last_name}
+                                              By: {article.author.first_name.charAt(0).toUpperCase() + article.author.first_name.slice(1).toLowerCase()} {article.author.last_name.charAt(0).toUpperCase()+ article.author.last_name.slice(1).toLowerCase()}
                                                 </p>
                                             </div>
                                             </Link>
@@ -147,7 +152,7 @@ const MainBody = () => {
                         {post.title_post}
                         </h1>
                         <p className='text-sm'>
-                        By: {post.author_post.first_name} {post.author_post.last_name}
+                        By: {post.author_post.first_name.charAt(0).toUpperCase() + post.author_post.first_name.slice(1).toLowerCase()} {post.author_post.last_name.charAt(0).toUpperCase()+ post.author_post.last_name.slice(1).toLowerCase()}
                         </p>
                     </div>
               </Link>
@@ -188,7 +193,7 @@ const MainBody = () => {
                           {post.title_post}
                           </h1>
                           <p className='text-[14px] mb-3'>
-                          By: {post.author_post.first_name} {post.author_post.last_name}
+                          By: {post.author_post.first_name.charAt(0).toUpperCase() + post.author_post.first_name.slice(1).toLowerCase()} {post.author_post.last_name.charAt(0).toUpperCase()+ post.author_post.last_name.slice(1).toLowerCase()}
                           </p>
                       </div>
               </Link>

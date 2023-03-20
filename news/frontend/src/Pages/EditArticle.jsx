@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useNavigate, useParams } from 'react-router-dom'
 import Loading from '../Components/Loading'
 
-const EditPost = () => {
+const EditArticle = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -15,15 +15,15 @@ const EditPost = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token = Cookies.get('token');
-      const response = await fetch(`http://127.0.0.1:8000/api/posts/${id}/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/articles/${id}/`, {
         headers: {
           'Authorization': `Token ${token}`
         }
       });
       const data = await response.json();
-      setTitle(data.title_post);
-      setContent(data.content_post);
-      setImageUrl(data.image_post);
+      setTitle(data.title);
+      setContent(data.content);
+      setImageUrl(data.image);
       setIsLoading(false);
     }
     fetchData();
@@ -45,9 +45,9 @@ const EditPost = () => {
     event.preventDefault();
 
     const putData = {
-      title_post: title,
-      content_post: content,
-      image_post: imageUrl
+      title: title,
+      content: content,
+      image: imageUrl
     };
 
     const csrftoken = Cookies.get("csrftoken");
@@ -62,7 +62,7 @@ const EditPost = () => {
       body: JSON.stringify(putData),
     };
 
-    fetch(`http://127.0.0.1:8000/api/posts/${id}/`, requestOptions)
+    fetch(`http://127.0.0.1:8000/api/articles/${id}/`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log("Post updated:", data);
@@ -98,10 +98,10 @@ const EditPost = () => {
           <input type="url" value={imageUrl} onChange={handleImageUrlChange} className='w-11/12 mx-3 mb-4 border-2 border-gray-600  border-solid rounded-md mt-3'required  />
         </label>
         <br />
-        <button type="submit" className="inline-block px-6 mr-18 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-sm hover:bg-yellow mb-3"> Submit Edited Post </button>
+        <button type="submit" className="inline-block px-6 mr-18 py-2 border-2 border-yellow-500 text-yellow-500 font-medium text-xs leading-tight uppercase rounded-sm hover:bg-yellow mb-3"> Submit Edited Article </button>
         </form>
     </div>
   );
 };
 
-export default requireAuth(EditPost);
+export default requireAuth(EditArticle);

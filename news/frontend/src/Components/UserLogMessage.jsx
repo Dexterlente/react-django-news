@@ -36,7 +36,7 @@ const UserProfile = () => {
 
   return (
     <div>
-      <h2>Welcome, {user.first_name.charAt(0).toUpperCase() + user.first_name.slice(1)} {user.last_name.charAt(0).toUpperCase() + user.last_name.slice(1)}</h2>
+      <h2>Welcome, {user.first_name.charAt(0).toUpperCase() + user.first_name.slice(1).toLowerCase()} {user.last_name.charAt(0).toUpperCase() + user.last_name.slice(1).toLowerCase()}</h2>
       <p>Email: {user.email}</p>
     </div>
   );
