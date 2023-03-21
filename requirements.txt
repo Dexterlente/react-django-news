@@ -1,11 +1,17 @@
 asgiref==3.6.0
 backports.zoneinfo==0.2.1
+Brotli==1.0.9
+dj-database-url==1.2.0
 Django==4.1.5
 django-cors-headers==3.13.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
+gunicorn==20.1.0
+-e git+https://github.com/Dexterlente/react-django-news.git@613e062220b12c628e057ad2d18a84223d851922#egg=news&subdirectory=news
+psycopg2-binary==2.9.5
 PyJWT==2.6.0
 python-decouple==3.7
 pytz==2022.7.1
 sqlparse==0.4.3
 uuid==1.30
+whitenoise==6.4.0
