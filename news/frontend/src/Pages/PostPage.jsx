@@ -63,7 +63,10 @@ const PostPage = () => {
                       <Loading />
                     ) : (
                       <div>
-                        <div className='hidden sm:block mt-28'>
+                        <div className='text-center text-[48px] md:text-[68px] font-bold mt-4'> 
+                         News Archive
+                        </div>
+                        <div className='hidden sm:block mt-18'>
                           {data    //filter archived true
                            .filter(post => post.archived_post)
                            .map((post, index) => (
@@ -87,13 +90,15 @@ const PostPage = () => {
                                       </h1>
                                     </div>
                                     </Link>
+                                    <Link to={`/post/${post.id}`}>
                               <img className='h-[150px] w-[300px]' src={ post.image_post } alt='post' />
+                              </Link>
                           
                           </div>
                           
                           ))}
                           </div>
-                          <div className='block sm:hidden mt-28'>
+                          <div className='block sm:hidden mt-18'>
                           {data    //filter archived false
                            .filter(post => !post.archived)
                            .map((post, index) => (

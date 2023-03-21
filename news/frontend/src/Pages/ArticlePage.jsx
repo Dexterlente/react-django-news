@@ -86,7 +86,9 @@ const ArticlePage = () => {
                                       </h1>
                                     </div>
                                     </Link>
+                                    <Link to={`/articles/${article.id}`}>
                               <img className='h-[150px] w-[300px]' src={ article.image } alt='article' />
+                              </Link>
                           </div>
                           
                           ))}

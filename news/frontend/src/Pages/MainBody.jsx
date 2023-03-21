@@ -93,7 +93,9 @@ const MainBody = () => {
                                   </p>
                               </div>
                               </Link>
-                            <img className='h-[150px] w-[300px] pr-2' src={ post.image_post } alt='Post' />
+                              <Link to={`/post/${post.id}`}>
+                            <img className='h-[150px] w-[300px] pr-2 cursor-pointer' src={ post.image_post } alt='Post' />
+                            </Link>
                         </div>
                         ))}
                     </div>
@@ -123,7 +125,9 @@ const MainBody = () => {
                                                 </p>
                                             </div>
                                             </Link>
-                                          <img className='h-[150px] w-[300px] mr-4' src={ article.image } alt='Article' />
+                                            <Link to={`/articles/${article.id}`}>
+                                          <img className='h-[150px] w-[300px] mr-4 cursor-pointer' src={ article.image } alt='Article' />
+                                          </Link>
                                       </div>
                                       ))}
                                   </div>
@@ -157,7 +161,9 @@ const MainBody = () => {
                     </div>
               </Link>
                 <div className='h-[300px] w-[400px] mr-24'>
-                    <img src={ post.image_post } className='align-middle' alt='Post' />
+                <Link to={`/post/${post.id}`}> 
+                    <img src={ post.image_post } className='align-middle cursor-pointer' alt='Post' />
+                </Link>
                 </div>
           </div>
           ))}
@@ -198,7 +204,9 @@ const MainBody = () => {
                       </div>
               </Link>
               <div className='h-[280px] w-[380px]'>
-              <img src={ post.image_post } className='align-middle' alt='Post' />
+              <Link to={`/post/${post.id}`}> 
+              <img src={ post.image_post } className='align-middle cursor-pointer' alt='Post' />
+              </Link>
               </div>
           </div>
             ))}
