@@ -27,6 +27,7 @@ const NavBar = () => {
 const navigate = useNavigate();
 const handleLogout = () => {
 	// do something after logout
+	window.location.reload(true);
 	navigate('/');
 	};
 
