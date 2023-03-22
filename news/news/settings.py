@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     # application
     'api.apps.ApiConfig',
     'rest_framework_simplejwt',
+    'webpack_loader',
 ]
 # import statement
 
@@ -199,4 +200,13 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
+}
+
+WEBPACK_LOADER = {
+  'DEFAULT': {
+    'CACHE': not DEBUG,
+    'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.json'),
+    'POLL_INTERVAL': 0.1,
+    'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+  }
 }
