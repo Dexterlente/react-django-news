@@ -27,6 +27,9 @@ from rest_framework.authentication import TokenAuthentication
 
 from rest_framework.pagination import PageNumberPagination
 
+def index(request):
+    return render(request, 'frontend/build/index.html')
+
 class LoginAPIView(ObtainAuthToken):
     def post(self, request):
         if request.user.is_authenticated:
