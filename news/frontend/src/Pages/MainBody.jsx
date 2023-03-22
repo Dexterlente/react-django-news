@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ScrollToTopButton from '../Components/ScrollToTopButton'
 import Loading from '../Components/Loading'
+import API_ENDPOINT from '../config.js'
 
 
 
@@ -27,7 +28,7 @@ const MainBody = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(`http://127.0.0.1:8000/api/posts/?page=1`);
+        const result = await fetch(`${API_ENDPOINT}/api/posts/?page=1`);
         const data = await result.json();
         console.log(data);
         setPosts(data.results);
@@ -53,7 +54,7 @@ const MainBody = () => {
   useEffect(() => {
     const fetchDatas = async () => {
       try {
-        const result = await fetch(`http://127.0.0.1:8000/api/articles/?page=1`);
+        const result = await fetch(`${API_ENDPOINT}/api/articles/?page=1`);
         const data = await result.json();
         console.log(data);
         setArticles(data.results);

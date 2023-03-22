@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import API_ENDPOINT from '../config.js'
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -8,7 +9,7 @@ const UserProfile = () => {
     const token = Cookies.get("token");
 
     if (token) {
-      fetch("http://127.0.0.1:8000/api/user/", {
+      fetch(`${API_ENDPOINT}/api/user/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

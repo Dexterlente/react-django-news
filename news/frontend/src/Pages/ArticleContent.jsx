@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ArchiveButtonArticle from '../Components/ArchiveButtonArticle'
 import Cookies from 'js-cookie';
 import Loading from '../Components/Loading'
+import API_ENDPOINT from '../config.js'
 
 const ArticleContent = () => {
     const { id } = useParams();
@@ -12,7 +13,7 @@ const ArticleContent = () => {
     const [sessionID, setSessionID] = useState('');
   
     const fetchArticleContent = (id) => {
-      fetch(`http://127.0.0.1:8000/api/articles/${id}`)
+      fetch(`${API_ENDPOINT}/api/articles/${id}`)
         .then((res) => res.json())
         .then((data) => {
             setArticleContent(data);

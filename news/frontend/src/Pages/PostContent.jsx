@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ArchiveButtonPost from '../Components/ArchiveButtonPost'
 import Cookies from 'js-cookie';
 import Loading from '../Components/Loading'
+import API_ENDPOINT from '../config.js'
 
 const PostContent = () => {
     const { id } = useParams();
@@ -13,7 +14,7 @@ const PostContent = () => {
 
 
     const fetchPostContent = (id) => {
-      fetch(`http://127.0.0.1:8000/api/posts/${id}`)
+      fetch(`${API_ENDPOINT}/api/posts/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setPostContent(data);

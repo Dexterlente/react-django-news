@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Loading from '../Components/Loading'
+import API_ENDPOINT from '../config.js'
+
 
 const PostPage = () => {
   const [data, setData] =useState([]);
@@ -26,7 +28,7 @@ const PostPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(`http://127.0.0.1:8000/api/posts/?page=${currentPage + 1}`);
+        const result = await fetch(`${API_ENDPOINT}/api/posts/?page=${currentPage + 1}`);
         const data = await result.json();
         console.log(data);
         setData(data.results);

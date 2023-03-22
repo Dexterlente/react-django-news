@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
+import API_ENDPOINT from '../config.js'
 
 function ArchiveButtonArticle({ id, archived, onArchiveChange }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +24,7 @@ function ArchiveButtonArticle({ id, archived, onArchiveChange }) {
       return;
     }
 
-    const response = await fetch(`http://127.0.0.1:8000/api/articles/${id}/`, {
+    const response = await fetch(`${API_ENDPOINT}/api/articles/${id}/`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -2,6 +2,7 @@ import requireAuth from '../Contexts/requireAuth'
 import React, { useState, } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom'
+import API_ENDPOINT from '../config.js'
 
 const CreateArticle = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const requestOptions = {
   body: JSON.stringify(postData),
 };
 
-    fetch("http://127.0.0.1:8000/api/articles/", requestOptions)
+    fetch(`${API_ENDPOINT}/api/articles/`, requestOptions)
 
       .then((response) => response.json())
       .then((data) => {

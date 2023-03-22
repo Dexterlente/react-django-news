@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import withAuth from '../Contexts/withAuth';
+import API_ENDPOINT from '../config.js'
 
 function Login() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Login() {
     e.preventDefault();
     const data = { username: username, password: password };
     console.log(Cookies.get('csrftoken'));
-    fetch('http://127.0.0.1:8000/api/login/', {
+    fetch(`${API_ENDPOINT}/api/login/`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

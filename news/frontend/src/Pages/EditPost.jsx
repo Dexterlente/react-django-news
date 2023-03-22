@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate, useParams } from 'react-router-dom'
 import Loading from '../Components/Loading'
+import API_ENDPOINT from '../config.js'
 
 const EditPost = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const EditPost = () => {
   useEffect(() => {
     const fetchData = async () => {
       const token = Cookies.get('token');
-      const response = await fetch(`http://127.0.0.1:8000/api/posts/${id}/`, {
+      const response = await fetch(`${API_ENDPOINT}/api/posts/${id}/`, {
         headers: {
           'Authorization': `Token ${token}`
         }
@@ -62,7 +63,7 @@ const EditPost = () => {
       body: JSON.stringify(putData),
     };
 
-    fetch(`http://127.0.0.1:8000/api/posts/${id}/`, requestOptions)
+    fetch(`${API_ENDPOINT}/api/posts/${id}/`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log("Post updated:", data);

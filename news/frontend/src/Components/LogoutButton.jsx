@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
+import API_ENDPOINT from '../config.js'
 
 function LogoutButton({ onLogout }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,7 +22,7 @@ function LogoutButton({ onLogout }) {
   const token = Cookies.get('token');
   const csrfToken = Cookies.get('csrftoken');
 
-    fetch('http://127.0.0.1:8000/api/logout/', {
+    fetch(`${API_ENDPOINT}/api/logout/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
