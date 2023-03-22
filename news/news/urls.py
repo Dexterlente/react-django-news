@@ -21,5 +21,9 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('', TemplateView.as_view(template_name='frontend/build/index.html')),
+    path('', TemplateView.as_view(template_name='frontend/build/index.html'), name='index'),
 ]
+
+# Serve static files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
