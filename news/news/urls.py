@@ -23,7 +23,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('', TemplateView.as_view(template_name='frontend/build/index.html'), name='index'),
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
 ]
 
 # # Serve static files during development
