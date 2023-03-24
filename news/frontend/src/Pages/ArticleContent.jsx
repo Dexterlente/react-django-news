@@ -38,7 +38,7 @@ const ArticleContent = () => {
         {loading ? (
           <Loading />
         ) : (
-          <div className='text-center md:mx-32'>
+          <div className='text-center md:mx-32 xl:mx-52'>
             <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{ArticleContent.title}</h1>
             <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
               By: {ArticleContent.author.first_name.charAt(0).toUpperCase() + ArticleContent.author.first_name.slice(1).toLowerCase() } {ArticleContent.author.last_name.charAt(0).toUpperCase()+ ArticleContent.author.last_name.slice(1).toLowerCase()}
