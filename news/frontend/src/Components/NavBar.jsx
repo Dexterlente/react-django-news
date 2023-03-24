@@ -90,9 +90,9 @@ const handleLogout = () => {
 					</div>
 			</div>
 			{/* NAV transition */}
-		<div className={ nav ? "absolute right-0 sm:right-0 text-black top-0 w-full h-screen bg-gray-500 ease-in-out duration-500 z-50"
-							: "ease-in-out duration-500 top-0 h-screen absolute right-[-500%] bg-gray-500"}>
-
+		<div className={ nav ? "fixed right-0 sm:right-0 text-black mobile-nav-shadow top-0  w-full h-full bg-gray-500 ease-in-out duration-500 z-50"
+							: "ease-in-out duration-500 top-0 h-full w-full fixed right-[-100%] bg-gray-500 z-50"}>
+{/* className={nav ? 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500' : 'ease-in-out duration-500 fixed left-[-100%]'} */}
 				<div onClick={handleNav} className='mt-2 ml-2' size={25}>
 						{" "}
 						<AiOutlineClose size={20} />{" "}

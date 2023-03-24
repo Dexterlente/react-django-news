@@ -23,8 +23,6 @@ class Profile(models.Model):
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    # uuid = models.UUIDField(default=uuid.uuid4, unique=True)
-    # uuid = models.UUIDField(default=uuid.uuid4, primary_key=True)
     title = models.CharField(max_length=120)
     content = models.TextField()
     image = models.CharField(max_length=1000)
