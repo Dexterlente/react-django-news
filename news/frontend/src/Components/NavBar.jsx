@@ -104,7 +104,7 @@ const handleLogout = () => {
 					ABOUT
 				</Link>
 				<Link to={"/articles"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
-					ARTICLES
+					Crypto101
 				</Link>
 				<Link to={"/liveprice"} onClick={handleNav} className='hover:bg-gray-200 ml-8 mt-1 font-bold rounded-md'>
 					LIVE PRICES

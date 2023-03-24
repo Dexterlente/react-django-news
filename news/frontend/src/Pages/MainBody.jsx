@@ -184,7 +184,7 @@ const MainBody = () => {
         {/* smallest */}
 
         <div className='block md:hidden'>
-        <div className='text-center font-bold text-[30px] mb-6'>
+        <div className='text-center font-bold text-[30px] mb-6 w-10/12'>
             Top Stories
             </div>
 
@@ -193,7 +193,7 @@ const MainBody = () => {
                   ) : (
             <div>
                   {posts.map((post) => (
-                    <div key={post.id} className='flex-row justify-center ml-5 border-b-4 last:border-b-0 border-[#795C34] mb-4 pb-4 align-middle'> 
+                    <div key={post.id} className='flex-row justify-center mx-1 border-b-4 last:border-b-0 border-[#795C34] mb-4 pb-4 align-middle'> 
                               <Link to={`/post/${post.id}`}>
                       <div className='mr-6'>
                           <h1 className='font-bold text-[18px] mb-3'>

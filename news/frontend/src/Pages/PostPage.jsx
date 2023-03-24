@@ -100,11 +100,11 @@ const PostPage = () => {
                           
                           ))}
                           </div>
-                          <div className='block sm:hidden mt-18'>
+                          <div className='block sm:hidden mt-18 w-10/12'>
                           {data    //filter archived false
                            .filter(post => !post.archived)
                            .map((post, index) => (
-                          <div key={post.id} className={`flex-row border-b-2 pb-4 ml-6 content-center border-[#795C34] my-10 ${
+                          <div key={post.id} className={`flex-row border-b-2 pb-4 ml-1 content-center border-[#795C34] my-10 ${
                             index === data.length - 1 ? 'border-b-0' : ''
                           }`}> 
                                 <Link to={`/post/${post.id}`}>
