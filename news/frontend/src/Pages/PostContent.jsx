@@ -37,7 +37,7 @@ const PostContent = () => {
         {loading ? (
           <Loading />
         ) : (
-          <div className='text-center md:mx-32 xl:mx-52'>
+          <div className='text-center md:w-8/12 lg:w-6/12 mx-auto'>
             <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{PostContent.title_post}</h1>
             <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
               By: {PostContent.author_post.first_name.charAt(0).toUpperCase() + PostContent.author_post.first_name.slice(1).toLowerCase() } {PostContent.author_post.last_name.charAt(0).toUpperCase()+ PostContent.author_post.last_name.slice(1).toLowerCase()}
@@ -49,7 +49,7 @@ const PostContent = () => {
                   day: "numeric",
                 })}
           </p>
-            <p className='text-[16px] md:m-24 m-8'>{PostContent.content_post}</p>
+            <p className='text-[16px] md:m-24 text-left m-8'>{PostContent.content_post}</p>
             {sessionID && (
               <>
             <ArchiveButtonPost

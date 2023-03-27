@@ -38,7 +38,7 @@ const ArticleContent = () => {
         {loading ? (
           <Loading />
         ) : (
-          <div className='text-center md:mx-32 xl:mx-52'>
+          <div className='text-center md:w-8/12 lg:w-6/12 mx-auto'>
             <h1 className='font-bold text-[40px] mx-4 mb-4 mt-8'>{ArticleContent.title}</h1>
             <p className='mt-4 text-sm text-start md:mx-24 mx-8'>
               By: {ArticleContent.author.first_name.charAt(0).toUpperCase() + ArticleContent.author.first_name.slice(1).toLowerCase() } {ArticleContent.author.last_name.charAt(0).toUpperCase()+ ArticleContent.author.last_name.slice(1).toLowerCase()}
@@ -50,7 +50,7 @@ const ArticleContent = () => {
                   day: "numeric",
                 })}
           </p>
-            <p className='text-[16px] md:m-24 m-8'>{ArticleContent.content}</p>
+            <p className='text-[16px] md:m-24 m-8 text-left'>{ArticleContent.content}</p>
             {sessionID && (
               <>
             <ArchiveButtonArticle

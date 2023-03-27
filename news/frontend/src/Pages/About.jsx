@@ -21,7 +21,7 @@ const About = () => {
                     <div className='text-[60px] font-bold mb-5'>
                     Vission/Mission
                     </div>
-                    <div className='text-start'>
+                    <div className='text-start md:w-8/12 mx-auto'>
                     Vision: To become the primary destination for comprehensive news, analysis, and education on the blockchain industry in the Philippines.
                 <br />
                 <br />

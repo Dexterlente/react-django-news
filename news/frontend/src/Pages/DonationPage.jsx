@@ -9,7 +9,7 @@ const DonationPage = () => {
               Donate To Us
             </div>
             <div className='grid grid-cols-2 mb-64'>
-                <div className='text-center mx-10 my-12'>
+                <div className='text-left my-12 md:w-7/12 mx-auto'>
                 As a non-profit news site dedicated to providing accurate and up-to-date information about blockchain technology, we rely on the generosity of our readers to keep us running.
                   Your donation can help us continue to produce high-quality content that educates and informs people about the potential of blockchain, and its impact on various industries.
                   With your support, we can cover the costs of web hosting, content creation, and other essential expenses, while also expanding our coverage and reach. Whether you are a blockchain 
