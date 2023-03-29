@@ -69,7 +69,7 @@ const MainBody = () => {
 
   return (
     <div>
-    <div className='pb-4 pt-10 mb-6'>
+    <div className='pb-4 mt-4 mb-6'>
       <div className='hidden lg:block'>
         <div className='text-center font-bold text-[70px] mt-10 mb-32'>
           Top Stories

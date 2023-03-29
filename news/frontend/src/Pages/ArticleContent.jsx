@@ -11,6 +11,12 @@ const ArticleContent = () => {
     const [loading, setLoading] = useState(true);
     const [archived, setArchived] = useState(false);
     const [sessionID, setSessionID] = useState('');
+
+    //format \n into line break for the db
+    // const formatText = (text) => {
+    //   return text.replace(/\n/g, "<br>")
+    //              .replace(/(\*[^*]*\*)/g, "<b>$1</b>");
+    // };
   
     const fetchArticleContent = (id) => {
       fetch(`${API_ENDPOINT}/api/articles/${id}`)
@@ -50,7 +56,7 @@ const ArticleContent = () => {
                   day: "numeric",
                 })}
           </p>
-            <p className='text-[16px] md:m-24 m-8 text-left'>{ArticleContent.content}</p>
+            <p className='text-[16px] md:m-24 m-8 text-left' dangerouslySetInnerHTML={{ __html: (ArticleContent.content) }}></p>
             {sessionID && (
               <>
             <ArchiveButtonArticle

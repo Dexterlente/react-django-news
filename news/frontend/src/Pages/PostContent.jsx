@@ -12,7 +12,6 @@ const PostContent = () => {
     const [archived, setArchived] = useState(false);
     const [sessionID, setSessionID] = useState('');
 
-
     const fetchPostContent = (id) => {
       fetch(`${API_ENDPOINT}/api/posts/${id}`)
         .then((res) => res.json())
@@ -49,7 +48,7 @@ const PostContent = () => {
                   day: "numeric",
                 })}
           </p>
-            <p className='text-[16px] md:m-24 text-left m-8'>{PostContent.content_post}</p>
+            <p className='text-[16px] md:m-24 text-left m-8' dangerouslySetInnerHTML={{ __html: (PostContent.content_post) }}></p>
             {sessionID && (
               <>
             <ArchiveButtonPost

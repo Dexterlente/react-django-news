@@ -57,7 +57,7 @@ const Cover = () => {
     <div className='mt-3 ml-6'>
         <UserLogMessage />
     </div>
-    <div className='mb-16'>
+    <div className='mb-10'>
       <div className='h-[585px] hidden lg:block'>
         <div className='max-w-[1280] w-11/12 m-auto py-6 h-screen px-4 relative group'>
           <div
