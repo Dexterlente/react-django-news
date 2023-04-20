@@ -25,22 +25,43 @@ const toggleDiv2 = () => {
 
 const crypto_api ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=php&ids=bitcoin%2Cethereum%2Cbinancecoin%2Cripple%2Ccardano%2Csolana%2Cdogecoin%2Cpolkadot%2Cmatic-network%2Cavalanche-2%2Cuniswap%2Ctron%2Clitecoin&order=market_cap_desc&per_page=100&page=1&sparkline=false'
 useEffect(() => {
+  const fetchCrypto = () => {
   fetch(crypto_api)
     .then((res) => res.json())
     .then((data) => {
       setCrypto(data);
       setLoading(false);
     });
+  };
+  fetchCrypto(); // Fetch data for the first time
+
+  const interval = setInterval(() => {
+    fetchCrypto();
+  }, 60000); // Fetch data every minute (60000 milliseconds)
+  
+  // Cleanup function
+  return () => clearInterval(interval);
+
 }, []);
 
 const token_api ='https://api.coingecko.com/api/v3/coins/markets?vs_currency=php&ids=smooth-love-potion%2Caxie-infinity%2Cthe-sandbox%2Cdecentraland%2Cwax%2Cguild-of-guardians%2Cmobox%2Cyield-guild-games%2Cgala%2Cilluvium%2Csplinterlands%2Cgods-unchained%2Cpegaxy-stone&order=market_cap_desc&per_page=100&page=1&sparkline=false'
 useEffect(() => {
+  const fetchData = () => {
   fetch(token_api)
     .then((res) => res.json())
     .then((data) => {
       setToken(data);
       setLoadingt(false);
     });
+  };
+  fetchData(); // Fetch data for the first time
+
+  const interval = setInterval(() => {
+    fetchData();
+  }, 60000); // Fetch data every minute (60000 milliseconds)
+  
+  // Cleanup function
+  return () => clearInterval(interval);
 }, []);
 
  const now = new Date();
