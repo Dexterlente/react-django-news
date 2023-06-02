@@ -23,7 +23,7 @@ class Profile(models.Model):
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=200)
     content = models.TextField()
     image = models.CharField(max_length=5000)
     time_created = models.DateTimeField(auto_now_add=True)
@@ -38,7 +38,7 @@ class Article(models.Model):
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
-    title_post = models.CharField(max_length=120)
+    title_post = models.CharField(max_length=200)
     content_post = models.TextField()
     image_post = models.CharField(max_length=5000)
     time_created_post = models.DateTimeField(auto_now_add=True)
